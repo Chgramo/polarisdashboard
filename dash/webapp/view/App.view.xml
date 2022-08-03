@@ -1,0 +1,368 @@
+<mvc:View controllerName="dash.controller.App"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:card="sap.f.cards"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:f="sap.f"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    xmlns:core="sap.ui.core"
+    xmlns:layout="sap.ui.layout"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:LayoutData="sap.ui.core.LayoutData"
+    xmlns:viz.data="sap.viz.ui5.data">
+    <App id="iDApp">
+        <Page id="iDPage">
+            <HBox id="_IDGenHBox1" width="100%">
+                <VBox id="_IDGenHBox2" width="50%" height="100%" class="sapUiSmallMarginTopBottom sapUiSmallMarginBeginEnd">
+                    <f:Card id="idFavorite" height="80%">
+                        <f:header>
+                            <card:Header id="_IDGenHeader2e" title="My Records" subtitle="" iconSrc="sap-icon://activities" />
+                        </f:header>
+                        <f:content>
+
+                            <VBox id="card1VerticalLayout" class="box" alignContent="Stretch" width="100%" fitContainer="true">
+                                <!-- Object type -->
+                                <fb:FilterBar id="_IDGenFilterBar1" reset="onReset" search="onSearch" showRestoreButton="true" showClearButton="true">
+                                    <fb:filterGroupItems>
+                                        <fb:FilterGroupItem id="_IDGenFilterGroupItem1" groupName="__$INTERNAL$" name="A" label="Obect Type" partOfCurrentVariant="true" visibleInFilterBar="true">
+                                            <fb:control>
+                                                <MultiComboBox id="one" showSecondaryValues="true" width="500px" selectedKeys="MP" items="{objtype>/}">
+                                                    <core:ListItem id="_IDGenListItem1" key="{objtype>ObjTypeid}" text="{objtype>ObjTypes}" />
+                                                </MultiComboBox>
+                                            </fb:control>
+                                        </fb:FilterGroupItem>
+                                        <!-- Record type -->
+                                        <fb:FilterGroupItem id="_IDGenFilterGroupItem2" groupName="__$INTERNAL$" name="B" label="Record Type" labelTooltip="Tooltip Example" partOfCurrentVariant="true" visibleInFilterBar="true">
+                                            <fb:control>
+
+                                                <MultiComboBox id="Two" showSecondaryValues="true" width="500px" selectedKeys="COR" items="{rectyp>/}">
+                                                    <core:ListItem id="_IDGenListItem2" key="{rectyp>ObjTypeid}" text="{rectyp>ObjTypes}" />
+                                                </MultiComboBox>
+
+                                            </fb:control>
+                                        </fb:FilterGroupItem>
+                                        <!-- Interacting Organisation-->
+                                        <fb:FilterGroupItem id="_IDGenFilterGroupItem3" groupName="G1" groupTitle="Group1" name="A1" label="Interacting Organisation" labelTooltip="Tooltip GroupItem Example" visibleInFilterBar="true">
+                                            <fb:control>
+                                                <MultiComboBox id="Intorg" showSecondaryValues="true" width="500px" selectedKeys="IDMP_COR" items="{intorg>/}">
+                                                    <core:ListItem id="_IDGenListItem23" key="{intorg>ObjTypeid}" text="{intorg>ObjTypes}" />
+                                                </MultiComboBox>
+                                            </fb:control>
+                                        </fb:FilterGroupItem>
+                                        <!-- Interaction Purpose -->
+                                        <fb:FilterGroupItem id="_IDGenFilterGroupItem4" groupName="G1" groupTitle="Group1" name="B1" label="Interaction Purpose" visibleInFilterBar="true">
+                                            <fb:control>
+                                                <MultiComboBox id="Intprp" showSecondaryValues="true" width="500px" selectedKeys="IDM" items="{intprp>/}">
+                                                    <core:ListItem id="_IDGenListItem234" key="{intprp>ObjTypeid}" text="{intprp>ObjTypes}" />
+                                                </MultiComboBox>
+                                            </fb:control>
+                                        </fb:FilterGroupItem>
+                                    </fb:filterGroupItems>
+                                </fb:FilterBar>
+                                <IconTabHeader id="card1conTabHeader" select="onSelectionChange">
+                                    <items>
+                                        <IconTabFilter id="card1IconTabFilter2" key="" text="My Recent Records" class="sapUiResponsiveContentPadding">
+                                        </IconTabFilter>
+
+                                        <IconTabFilter id="card1IconTabFilter1" key="" text="My Recent favorites" class="sapUiResponsiveContentPadding">
+                                        </IconTabFilter>
+                                    </items>
+                                </IconTabHeader>
+                                <List id="card1List" noDataText="No Record Found" items="{ path: 'Card1RecModel>/', filters: [{path: 'ObjectType', operator: 'EQ', value1: 'MP' },
+                                        {path: 'RecordType', operator: 'EQ', value1: 'COR'},{path: 'InteractingOrgId', operator: 'EQ', value1: 'IDMP_COR'},
+                                        {path: 'InteractionPurposeId', operator: 'EQ', value1: 'IDM'}]}">
+                                    <CustomListItem id="_IDGenCustomListItem2" visible="{Card1RecModel>visible}">
+                                        <VBox id="_IDGenHBox2w" alignItems="Stretch" alignContent="Center" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+                                            <Text id="idObjectDesc" text="{Card1RecModel>ObjectDescr}" visible="true"/>
+                                            <Text id="idRecordTypeText" text="{Card1RecModel>RecordTypeText}" visible="true"/>
+                                        </VBox>
+                                    </CustomListItem>
+                                </List>
+
+                            </VBox>
+                        </f:content>
+                    </f:Card>
+                </VBox>
+                <VBox id="_IDGenHBox3" width="50%" height="100%" class="sapUiSmallMarginTopBottom sapUiSmallMarginBeginEnd">
+                    <f:Card id="_IDGenCard6">
+                        <f:header>
+                            <card:Header id="_IDGenHeader2" title="My Inbox" subtitle="" iconSrc="sap-icon://inbox" />
+                        </f:header>
+                        <f:content>
+                            <VBox id="card2VBox5" alignItems="Stretch" alignContent="Stretch">
+                                <fb:FilterBar id="_IDGenFiltesrBar1" reset="onReset" search="onInboxSearch" showRestoreButton="true" showClearButton="true">
+                                    <fb:filterGroupItems>
+                                        <fb:FilterGroupItem id="_IDGenFilsterGroupItem1" groupName="__$INTERNAL$" name="A" label="Obect Type" partOfCurrentVariant="true" visibleInFilterBar="true">
+                                            <fb:control>
+                                                <MultiComboBox id="inboxid" showSecondaryValues="true" width="500px" selectedKeys="MP" items="{objtype>/}">
+                                                    <core:ListItem id="_IDGenListItem12" key="{objtype>ObjTypeid}" text="{objtype>ObjTypes}" />
+                                                </MultiComboBox>
+                                            </fb:control>
+                                        </fb:FilterGroupItem>
+
+                                        <fb:FilterGroupItem id="_IDGesnFilterGroupItem2" groupName="__$INTERNAL$" name="B" label="Record Type" labelTooltip="Tooltip Example" partOfCurrentVariant="true" visibleInFilterBar="true">
+                                            <fb:control>
+                                                <MultiComboBox id="inboxid2" showSecondaryValues="true" width="500px" selectedKeys="COR" items="{rectyp>/}">
+                                                    <core:ListItem id="_IDGenListItem132" key="{rectyp>ObjTypeid}" text="{rectyp>ObjTypes}" />
+                                                </MultiComboBox>
+                                            </fb:control>
+                                        </fb:FilterGroupItem>
+
+                                        <fb:FilterGroupItem id="_IDGensFilterGroupItem3" groupName="G1" groupTitle="Group1" name="A1" label="Interacting Organisation" labelTooltip="Tooltip GroupItem Example" visibleInFilterBar="true">
+                                            <fb:control>
+                                                <MultiComboBox id="inboxid3" showSecondaryValues="true" width="500px" selectedKeys="IDMP_COR" items="{intorg>/}">
+                                                    <core:ListItem id="_IDGenListItem13" key="{intorg>ObjTypeid}" text="{intorg>ObjTypes}" />
+                                                </MultiComboBox>
+                                            </fb:control>
+                                        </fb:FilterGroupItem>
+
+                                        <fb:FilterGroupItem id="_IDGenFilterGrosupItem4" groupName="G1" groupTitle="Group1" name="B1" label="Interaction Purpose" visibleInFilterBar="true">
+                                            <fb:control>
+                                                <MultiComboBox id="inboxid4" showSecondaryValues="true" width="500px" selectedKeys="IDM" items="{intprp>/}">
+                                                    <core:ListItem id="_IDGenListItem14" key="{intprp>ObjTypeid}" text="{intprp>ObjTypes}" />
+                                                </MultiComboBox>
+                                            </fb:control>
+                                        </fb:FilterGroupItem>
+                                    </fb:filterGroupItems>
+                                </fb:FilterBar>
+                                <ScrollContainer id="idScrollContainer" height="100%" width="100%" vertical="true" focusable="true">
+                                    <List id="card2List" showSeparators="None" noDataText="No Record Found" items="{path: 'Card2RecModel>/'}">
+                                        <CustomListItem id="_IDGenCustomListItem1" highlight="{Card2RecModel>Highlight}">
+                                            <HBox id="_IDGenHBox14" alignItems="Center" class="sapUiSmallMarginBeginEnd">
+                                                <VBox id="_IDGenVBox2">
+                                                    <Title id="card2TitleName" level="H3" class="id_bold" wrapping="true" text="{Card2RecModel>TaskTitle}" />
+                                                    <Text id="card2TextPriority" text="Priority :{Card2RecModel>Priority}" />
+                                                    <Text id="card2TextDue" text="Due :{Card2RecModel>Due}"/>
+                                                    <HBox id="_IDGenHBox111">
+                                                        <Text id="_IDGenText8" text="Product ID :"/>
+                                                        <Text id="card2TextID" class="id_colorblue" text="{Card2RecModel>RecordInfo/RecordId}"/>
+                                                    </HBox>
+                                                    <Text id="card2TextDescription" text=" Description :{Card2RecModel>RecordInfo/ObjectDescr}"/>
+                                                    <Text id="card2TextLastSeen" class="" text="{Lastseen}"/>
+                                                </VBox>
+                                                <Button id="_IDGenButton1" text="View" type="Default" press="onPressView"></Button>
+                                            </HBox>
+                                        </CustomListItem>
+                                    </List>
+                                </ScrollContainer>
+                            </VBox>
+                        </f:content>
+                    </f:Card>
+                </VBox>
+            </HBox>
+            <HBox id="_IDGenHBox4" width="100%">
+                <VBox id="_IDGenVBox1" class="sapUiSmallMarginTopBottom sapUiSmallMarginBeginEnd">
+                    <f:Card id="_IDGenCasrder4">
+                        <f:header>
+                            <card:Header id="_IDGensHeadere6" title="Open Items" subtitle="By Status 35" iconSrc="sap-icon://overflow" />
+                        </f:header>
+                        <f:content >
+                            <VBox id="_IDGenVBox4">
+                                <fb:FilterBar id="_IDGenFiltesrBar12" reset="onReset" search="onSearch" showRestoreButton="true" showClearButton="true">
+                                    <fb:filterGroupItems>
+                                        <fb:FilterGroupItem id="_IDGenFilsterGroupItem12" groupName="__$INTERNAL$" name="A" label="Obect Type" partOfCurrentVariant="true" visibleInFilterBar="true">
+                                            <fb:control>
+                                                <MultiComboBox id="Viz1" showSecondaryValues="true" width="500px" selectedKeys="MP" items="{objtype>/}">
+                                                    <core:ListItem id="_IDGenListItem" key="{objtype>ObjTypeid}" text="{objtype>ObjTypes}" />
+                                                </MultiComboBox>
+                                            </fb:control>
+                                        </fb:FilterGroupItem>
+
+                                        <fb:FilterGroupItem id="_IDGesnFilterGroupIte2m2" groupName="__$INTERNAL$" name="B" label="Record Type" labelTooltip="Tooltip Example" partOfCurrentVariant="true" visibleInFilterBar="true">
+                                            <fb:control>
+                                                <MultiComboBox id="Viz2" showSecondaryValues="true" width="500px" selectedKeys="COR" items="{rectyp>/}">
+                                                    <core:ListItem id="_IDGenListItemviz" key="{rectyp>ObjTypeid}" text="{rectyp>ObjTypes}" />
+                                                </MultiComboBox>
+                                            </fb:control>
+                                        </fb:FilterGroupItem>
+
+                                        <fb:FilterGroupItem id="_IDGensFilterG2roupItem3" groupName="G1" groupTitle="Group1" name="A1" label="Interacting Organisation" labelTooltip="Tooltip GroupItem Example" visibleInFilterBar="true">
+                                            <fb:control>
+                                                <MultiComboBox id="Viz3" showSecondaryValues="true" width="500px" selectedKeys="IDMP_COR" items="{intorg>/}">
+                                                    <core:ListItem id="_IDGenListItem2367" key="{intorg>ObjTypeid}" text="{intorg>ObjTypes}" />
+                                                </MultiComboBox>
+                                            </fb:control>
+                                        </fb:FilterGroupItem>
+
+                                        <fb:FilterGroupItem id="_IDGenFilt2erGrosupItem4" groupName="G1" groupTitle="Group1" name="B1" label="Interaction Purpose" visibleInFilterBar="true">
+                                            <fb:control>
+                                                <MultiComboBox id="Viz4" showSecondaryValues="true" width="500px" selectedKeys="IDM" items="{intprp>/}">
+                                                    <core:ListItem id="_IDGenListItem23455" key="{intprp>ObjTypeid}" text="{intprp>ObjTypes}" />
+                                                </MultiComboBox>
+                                            </fb:control>
+                                        </fb:FilterGroupItem>
+                                    </fb:filterGroupItems>
+                                </fb:FilterBar>
+                                <viz:VizFrame id="idpiechartStatus" uiConfig="{applicationSet:'fiori'}" vizType="donut" vizProperties="{
+                                                                                                                        plotArea:{
+                                                                                                                                            dataLabel:{visible: true}
+                                                                                                                                },
+                                                                                                                                            title : {text:'Status'}
+                                                                                                                            }">
+
+                                    <viz:dataset>
+                                        <viz.data:FlattenedDataset id="idflattenData" data="{StatusChart>/}">
+                                            <viz.data:dimensions>
+                                                <viz.data:DimensionDefinition id="idStatus" name="status" value="{StatusChart>status}" />
+                                            </viz.data:dimensions>
+                                            <viz.data:measures>
+                                                <viz.data:MeasureDefinition id="idStatusVal" name="statusCount" value="{StatusChart>statusCount}" />
+                                            </viz.data:measures>
+                                        </viz.data:FlattenedDataset>
+                                    </viz:dataset>
+
+                                    <viz:feeds>
+                                        <viz.feeds:FeedItem id="idPriorityFlag" uid="size" type="Measure" values="statusCount" />
+                                        <viz.feeds:FeedItem id="idPriorityCountFlag" uid="color" type="Dimension" values="status" />
+                                    </viz:feeds>
+                                </viz:VizFrame>
+                            </VBox>
+                        </f:content>
+
+                    </f:Card>
+                </VBox>
+                <VBox id="_IDGenVBox22" class="sapUiSmallMarginTopBottom sapUiSmallMarginBeginEnd">
+
+                    <f:Card id="_IDGenCarder4">
+                        <f:header>
+                            <card:Header id="_IDGenHeadere6" title="Open Items" subtitle="By Priority 35" iconSrc="sap-icon://overflow" />
+                        </f:header>
+                        <f:content >
+                            <VBox id="_IDGenVBox5">
+                                <fb:FilterBar id="_IDGenFiltesrBar123" reset="onReset" search="onSearch" showRestoreButton="true" showClearButton="true">
+                                    <fb:filterGroupItems>
+                                        <fb:FilterGroupItem id="_IDGenFilsterGroupItem123" groupName="__$INTERNAL$" name="A" label="Object Type" partOfCurrentVariant="true" visibleInFilterBar="true">
+                                            <fb:control>
+                                                <MultiComboBox id="VizChartObj" showSecondaryValues="true" width="500px" selectedKeys="MP" items="{objtype>/}">
+                                                    <core:ListItem id="ListItemChart2Obj" key="{objtype>ObjTypeid}" text="{objtype>ObjTypes}" />
+                                                </MultiComboBox>
+                                            </fb:control>
+                                        </fb:FilterGroupItem>
+
+                                        <fb:FilterGroupItem id="_IDGesnFilterGroupIte2m23" groupName="__$INTERNAL$" name="B" label="Record Type" labelTooltip="Tooltip Example" partOfCurrentVariant="true" visibleInFilterBar="true">
+                                            <fb:control>
+                                                <MultiComboBox id="VizChartRec" showSecondaryValues="true" width="500px" selectedKeys="COR" items="{rectyp>/}">
+                                                    <core:ListItem id="ListItemChart2Rec" key="{rectyp>ObjTypeid}" text="{rectyp>ObjTypes}" />
+                                                </MultiComboBox>
+                                            </fb:control>
+                                        </fb:FilterGroupItem>
+
+                                        <fb:FilterGroupItem id="_IDGensFilterG2roupItem33" groupName="G1" groupTitle="Group1" name="A1" label="Interacting Organisation" labelTooltip="Tooltip GroupItem Example" visibleInFilterBar="true">
+                                            <fb:control>
+                                                <MultiComboBox id="VizChartIor" showSecondaryValues="true" width="500px" selectedKeys="IDMP_COR" items="{intorg>/}">
+                                                    <core:ListItem id="ListItemChart2Ior" key="{intorg>ObjTypeid}" text="{intorg>ObjTypes}" />
+                                                </MultiComboBox>
+                                            </fb:control>
+                                        </fb:FilterGroupItem>
+
+                                        <fb:FilterGroupItem id="_IDGenFilt2erGrosupItem34" groupName="G1" groupTitle="Group1" name="B1" label="Interaction Purpose" visibleInFilterBar="true">
+                                            <fb:control>
+                                                <MultiComboBox id="VizChartIntprp" showSecondaryValues="true" width="500px" selectedKeys="IDM" items="{intprp>/}">
+                                                    <core:ListItem id="ListItemChart2Intprp" key="{intprp>ObjTypeid}" text="{intprp>ObjTypes}" />
+                                                </MultiComboBox>
+                                            </fb:control>
+                                        </fb:FilterGroupItem>
+                                    </fb:filterGroupItems>
+                                </fb:FilterBar>
+                                <viz:VizFrame id="idpiechartPriority" uiConfig="{applicationSet:'fiori'}" vizType="donut" vizProperties="{
+                                                                                                                        plotArea:{
+                                                                                                                                            dataLabel:{visible: true}
+                                                                                                                                },
+                                                                                                                                            title : {text:'Priority'}
+                                                                                                                            }">
+                                    <viz:dataset>
+                                        <viz.data:FlattenedDataset id="flattenData" data="{PriorityChart>/}">
+                                            <viz.data:dimensions>
+                                                <viz.data:DimensionDefinition id="_IDGenDimensionDefinition1" name="priority" value="{PriorityChart>priority}" />
+                                            </viz.data:dimensions>
+                                            <viz.data:measures>
+                                                <viz.data:MeasureDefinition id="_IDGenMeasureDefinition1" name="priorityCount" value="{PriorityChart>priorityCount}" />
+                                            </viz.data:measures>
+                                        </viz.data:FlattenedDataset>
+                                    </viz:dataset>
+
+                                    <viz:feeds>
+                                        <viz.feeds:FeedItem id="_IDGenFeedItem1" uid="size" type="Measure" values="priorityCount" />
+                                        <viz.feeds:FeedItem id="_IDGenFeedItem2" uid="color" type="Dimension" values="priority" />
+                                    </viz:feeds>
+                                </viz:VizFrame>
+                            </VBox>
+                        </f:content>
+                    </f:Card>
+                </VBox>
+                <VBox id="_IDGenVBox3" class="sapUiSmallMarginTopBottom sapUiSmallMarginBeginEnd">
+                    <f:Card id="_IDGenCarder4gf">
+                        <f:header>
+                            <card:Header id="_IDGenHewadere6" title="Registerd Product" subtitle="By Country" iconSrc="sap-icon://overflow" />
+                        </f:header>
+                        <f:content >
+                            <VBox id="_IDGenVBox6">
+                                <fb:FilterBar id="_IDGenFiltesrBa4r12" reset="onReset" search="onSearch" showRestoreButton="true" showClearButton="true">
+                                    <fb:filterGroupItems>
+                                        <fb:FilterGroupItem id="_IDGenFilsterGro4upItem12" groupName="__$INTERNAL$" name="A" label="Obect Type" partOfCurrentVariant="true" visibleInFilterBar="true">
+                                            <fb:control>
+                                                <MultiComboBox id="VizChart3Obj" showSecondaryValues="true" width="500px" selectedKeys="MP" items="{objtype>/}">
+                                                    <core:ListItem id="ListItemChart3Obj" key="{objtype>ObjTypeid}" text="{objtype>ObjTypes}" />
+                                                </MultiComboBox>
+                                            </fb:control>
+                                        </fb:FilterGroupItem>
+
+                                        <fb:FilterGroupItem id="_IDGesnFilterGroupIte42m2" groupName="__$INTERNAL$" name="B" label="Record Type" labelTooltip="Tooltip Example" partOfCurrentVariant="true" visibleInFilterBar="true">
+                                            <fb:control>
+                                                <MultiComboBox id="VizChart3Rec" showSecondaryValues="true" width="500px" selectedKeys="COR" items="{rectyp>/}">
+                                                    <core:ListItem id="ListItemChart3Rec" key="{rectyp>ObjTypeid}" text="{rectyp>ObjTypes}" />
+                                                </MultiComboBox>
+                                            </fb:control>
+                                        </fb:FilterGroupItem>
+
+                                        <fb:FilterGroupItem id="_IDGensFilterG2roupIte4m3" groupName="G1" groupTitle="Group1" name="A1" label="Interacting Organisation" labelTooltip="Tooltip GroupItem Example" visibleInFilterBar="true">
+                                            <fb:control>
+                                                <MultiComboBox id="VizChart3Ior" showSecondaryValues="true" width="500px" selectedKeys="IDMP_COR" items="{intorg>/}">
+                                                    <core:ListItem id="ListItemChart3Ior" key="{intorg>ObjTypeid}" text="{intorg>ObjTypes}" />
+                                                </MultiComboBox>
+                                            </fb:control>
+                                        </fb:FilterGroupItem>
+
+                                        <fb:FilterGroupItem id="_IDGenFilt2erGrosupItem44" groupName="G1" groupTitle="Group1" name="B1" label="Interaction Purpose" visibleInFilterBar="true">
+                                            <fb:control>
+                                                <MultiComboBox id="VizChart3Intprp" showSecondaryValues="true" width="500px" selectedKeys="IDM" items="{intprp>/}">
+                                                    <core:ListItem id="ListItemChart3Intprp" key="{intprp>ObjTypeid}" text="{intprp>ObjTypes}" />
+                                                </MultiComboBox>
+                                            </fb:control>
+                                        </fb:FilterGroupItem>
+                                    </fb:filterGroupItems>
+                                </fb:FilterBar>
+                                <viz:VizFrame id="idpiecharwtPriority" uiConfig="{applicationSet:'fiori'}" vizType="donut" vizProperties="{
+                                                                                                                        plotArea:{
+                                                                                                                                            dataLabel:{visible: true}
+                                                                                                                                },
+                                                                                                                                            title : {text:'Priority'}
+                                                                                                                            }">
+                                    <viz:dataset>
+                                        <viz.data:FlattenedDataset id="flawttenData" data="{PriorityChart>/}">
+                                            <viz.data:dimensions>
+                                                <viz.data:DimensionDefinition id="_IDGwenDimensionDefinition1" name="priority" value="{PriorityChart>priority}" />
+                                            </viz.data:dimensions>
+                                            <viz.data:measures>
+                                                <viz.data:MeasureDefinition id="_IDwGenMeasureDefinition1" name="priorityCount" value="{PriorityChart>priorityCount}" />
+                                            </viz.data:measures>
+                                        </viz.data:FlattenedDataset>
+                                    </viz:dataset>
+
+                                    <viz:feeds>
+                                        <viz.feeds:FeedItem id="_IDGenFeedItem12" uid="size" type="Measure" values="priorityCount" />
+                                        <viz.feeds:FeedItem id="_IDGenFeedItem22" uid="color" type="Dimension" values="priority" />
+                                    </viz:feeds>
+                                </viz:VizFrame>
+                            </VBox>
+                        </f:content>
+                    </f:Card>
+                </VBox>
+
+            </HBox>
+
+        </Page>
+    </App>
+</mvc:View>
