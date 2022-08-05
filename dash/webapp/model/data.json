@@ -1,0 +1,30 @@
+{
+    "data":[
+
+    {"name" : "A","income" : "51500","cost": "53000" },
+
+    {"name" : "B","income" : "40912" ,"cost": "30050"},
+
+    {"name" : "C","income" : "65000","cost": "20000" },
+
+    {"name" : "D","income" : "12589","cost": "175021" }
+
+    ],
+
+
+
+    "item"  :
+
+    [
+
+    {"name" : "april","yield" : "100","cost": "150" },
+
+    {"name" : "may","yield" : "50" ,"cost": "100"},
+
+    {"name" : "june","yield" : "150","cost": "200" },
+
+    {"name" : "july","yield" : "125","cost": "175" }
+
+    ]
+
+}
