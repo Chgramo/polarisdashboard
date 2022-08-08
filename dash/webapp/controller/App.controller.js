@@ -61,14 +61,14 @@ sap.ui.define(
                     this.onSearch();
                     var oListItems = this.getView().byId('card1List').getBinding("items");
                     oListItems.sort(aSorter);
-                    utility.setLength(this);
+                    // utility.setLength(this);
                     // onSearch();
                   break;
                 case "My Recent favorites":
                     utility.resetModel(this);
                     this.onSearch();
                     var oListItems = this.getView().byId('card1List').getBinding("items");
-                    utility.setLength(this);
+                    //  utility.setLength(this);
                     // this.onSearch();
                   break;
             }  
@@ -158,7 +158,7 @@ sap.ui.define(
             {
                 oListItems.filter(aFilter);
             }
-            utility.setLength(this);
+            // utility.setLength(this);
         },
 
         onInboxSearch:function(oEvent){

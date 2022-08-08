@@ -1,6 +1,7 @@
 <mvc:View controllerName="dash.controller.App"
     xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:uxap="sap.uxap"
     xmlns="sap.m"
     xmlns:card="sap.f.cards"
     xmlns:fb="sap.ui.comp.filterbar"
@@ -14,24 +15,34 @@
     xmlns:viz.data="sap.viz.ui5.data">
     <App id="iDApp">
         <Page id="iDPage">
+        <!-- <uxap:ObjectPageLayout id="ObjectPageLayout"
+		showTitleInHeaderContent="true"
+		showEditHeaderButton="true"
+		editHeaderButtonPress="handleEditBtnPress"
+		upperCaseAnchorBar="false"> -->
+        <Panel id="_IDGenPanel1"
+		width="auto"
+		expandable="{device>/system/phone}"
+		expanded="{= !${device>/system/phone} }">
         <FlexBox id="_IDGenFlexBox1"
 				alignItems="Start"
 				justifyContent="End">
         <Button id="_IDGenButton1" text="Visable" type="Emphasized" class="sapUiSmallMarginEnd" />
         </FlexBox>
             <HBox id="_IDGenHBox1" width="100%">
-                <VBox id="_IDGenHBox2" width="50%" height="100%" class="sapUiSmallMarginTopBottom sapUiSmallMarginBeginEnd">
+                <VBox id="_IDGenHBox2" width="50%" height="100%" class="sapUiSmallMarginTopBottom sapUiSmallMarginEnd">
                     <f:Card id="idFavorite" height="80%">
                         <f:header>
                             <card:Header id="_IDGenHeader2e" title="My Records" subtitle="" iconSrc="sap-icon://activities" />
                         </f:header>
                         <f:content>
-
+                          
                             <VBox id="card1VerticalLayout" class="box" alignContent="Stretch" width="100%" fitContainer="true">
                                 <!-- Object type -->
-                                <fb:FilterBar id="_IDGenFilterBar1" reset="onReset" search="onSearch" showRestoreButton="true" showClearButton="true">
+                               
+                                <fb:FilterBar id="_IDGenFilterBar1" reset="onReset" search="onSearch" showRestoreButton="true" showClearButton="true" filterBarExpanded="false" >
                                     <fb:filterGroupItems>
-                                        <fb:FilterGroupItem id="_IDGenFilterGroupItem1" groupName="__$INTERNAL$" name="A" label="Obect Type" partOfCurrentVariant="true" visibleInFilterBar="true">
+                                        <fb:FilterGroupItem id="_IDGenFilterGroupItem1" groupName="__$INTERNAL$" name="A" label="Object Type" partOfCurrentVariant="true" visibleInFilterBar="true">
                                             <fb:control>
                                                 <MultiComboBox id="one" showSecondaryValues="true" width="500px" selectedKeys="MP" items="{objtype>/}">
                                                     <core:ListItem id="_IDGenListItem1" key="{objtype>ObjTypeid}" text="{objtype>ObjTypes}" />
@@ -75,7 +86,8 @@
                                         </IconTabFilter>
                                     </items>
                                 </IconTabHeader>
-                                <List id="card1List" noDataText="No Record Found" items="{ path: 'Card1RecModel>/', filters: [{path: 'ObjectType', operator: 'EQ', value1: 'MP' },
+                            <ScrollContainer id="_IDGenScrollContainer1" height="100%" width="100%" vertical="true" focusable="true">
+                                <List id="card1List" growing="true"  growingThreshold="5" mode="SingleSelectMaster" noDataText="No Record Found" items="{ path: 'Card1RecModel>/', filters: [{path: 'ObjectType', operator: 'EQ', value1: 'MP' },
                                         {path: 'RecordType', operator: 'EQ', value1: 'COR'},{path: 'InteractingOrgId', operator: 'EQ', value1: 'IDMP_COR'},
                                         {path: 'InteractionPurposeId', operator: 'EQ', value1: 'IDM'}]}">
                                     <CustomListItem id="_IDGenCustomListItem2" visible="{Card1RecModel>visible}">
@@ -85,8 +97,9 @@
                                         </VBox>
                                     </CustomListItem>
                                 </List>
-
+                            </ScrollContainer> 
                             </VBox>
+                           
                         </f:content>
                     </f:Card>
                 </VBox>
@@ -97,9 +110,9 @@
                         </f:header>
                         <f:content>
                             <VBox id="card2VBox5" class="box" alignContent="Stretch" width="100%" fitContainer="true">
-                                <fb:FilterBar id="_IDGenFiltesrBar1" reset="onReset" search="onInboxSearch" showRestoreButton="true" showClearButton="true">
+                                <fb:FilterBar id="_IDGenFiltesrBar1" reset="onReset" search="onInboxSearch" showRestoreButton="true" showClearButton="true" filterBarExpanded="false">
                                     <fb:filterGroupItems>
-                                        <fb:FilterGroupItem id="_IDGenFilsterGroupItem1" groupName="__$INTERNAL$" name="A" label="Obect Type" partOfCurrentVariant="true" visibleInFilterBar="true">
+                                        <fb:FilterGroupItem id="_IDGenFilsterGroupItem1" groupName="__$INTERNAL$" name="A" label="Object Type" partOfCurrentVariant="true" visibleInFilterBar="true">
                                             <fb:control>
                                                 <MultiComboBox id="inboxid" showSecondaryValues="true" width="500px" selectedKeys="MP" items="{objtype>/}">
                                                     <core:ListItem id="_IDGenListItem12" key="{objtype>ObjTypeid}" text="{objtype>ObjTypes}" />
@@ -160,16 +173,16 @@
                 </VBox>
             </HBox>
             <HBox id="_IDGenHBox4" width="100%">
-                <VBox id="_IDGenVBox1" class="sapUiSmallMarginBottom sapUiSmallMarginBeginEnd">
+                <VBox id="_IDGenVBox1" class="sapUiSmallMarginBottom sapUiSmallMarginEnd">
                     <f:Card id="_IDGenCasrder4">
                         <f:header>
                             <card:Header id="_IDGensHeadere6" title="Open Items" subtitle="By Status 35" iconSrc="sap-icon://overflow" />
                         </f:header>
                         <f:content >
                             <VBox id="_IDGenVBox4">
-                                <fb:FilterBar id="_IDGenFiltesrBar12" reset="onReset" search="onchartSearch" showRestoreButton="true" showClearButton="true">
+                                <fb:FilterBar id="_IDGenFiltesrBar12" reset="onReset" search="onchartSearch" showRestoreButton="true" showClearButton="true" filterBarExpanded="false">
                                     <fb:filterGroupItems>
-                                        <fb:FilterGroupItem id="_IDGenFilsterGroupItem12" groupName="__$INTERNAL$" name="A" label="Obect Type" partOfCurrentVariant="true" visibleInFilterBar="true">
+                                        <fb:FilterGroupItem id="_IDGenFilsterGroupItem12" groupName="__$INTERNAL$" name="A" label="Object Type" partOfCurrentVariant="true" visibleInFilterBar="true">
                                             <fb:control>
                                                 <MultiComboBox id="Viz1" showSecondaryValues="true" width="500px" selectedKeys="MP" items="{objtype>/}">
                                                     <core:ListItem id="_IDGenListItem" key="{objtype>ObjTypeid}" text="{objtype>ObjTypes}" />
@@ -230,6 +243,7 @@
 
                     </f:Card>
                 </VBox>
+
                 <VBox id="_IDGenVBox22" class="sapUiSmallMarginBottom sapUiSmallMarginEnd">
 
                     <f:Card id="_IDGenCarder4">
@@ -238,7 +252,7 @@
                         </f:header>
                         <f:content >
                             <VBox id="_IDGenVBox5">
-                                <fb:FilterBar id="_IDGenFiltesrBar123" reset="onReset" search="onSearch" showRestoreButton="true" showClearButton="true">
+                                <fb:FilterBar id="_IDGenFiltesrBar123" reset="onReset" search="onSearch" showRestoreButton="true" showClearButton="true" filterBarExpanded="false">
                                     <fb:filterGroupItems>
                                         <fb:FilterGroupItem id="_IDGenFilsterGroupItem123" groupName="__$INTERNAL$" name="A" label="Object Type" partOfCurrentVariant="true" visibleInFilterBar="true">
                                             <fb:control>
@@ -299,6 +313,7 @@
                         </f:content>
                     </f:Card>
                 </VBox>
+                
                 <VBox id="_IDGenVBox3" class="sapUiSmallMarginBottom sapUiSmallMarginEnd">
                     <f:Card id="_IDGenCarder4gf">
                         <f:header>
@@ -306,9 +321,9 @@
                         </f:header>
                         <f:content >
                             <VBox id="_IDGenVBox6">
-                                <fb:FilterBar id="_IDGenFiltesrBa4r12" reset="onReset" search="onSearch" showRestoreButton="true" showClearButton="true">
+                                <fb:FilterBar id="_IDGenFiltesrBa4r12" reset="onReset" search="onSearch" showRestoreButton="true" showClearButton="true" filterBarExpanded="false">
                                     <fb:filterGroupItems>
-                                        <fb:FilterGroupItem id="_IDGenFilsterGro4upItem12" groupName="__$INTERNAL$" name="A" label="Obect Type" partOfCurrentVariant="true" visibleInFilterBar="true">
+                                        <fb:FilterGroupItem id="_IDGenFilsterGro4upItem12" groupName="__$INTERNAL$" name="A" label="Object Type" partOfCurrentVariant="true" visibleInFilterBar="true">
                                             <fb:control>
                                                 <MultiComboBox id="VizChart3Obj" showSecondaryValues="true" width="500px" selectedKeys="MP" items="{objtype>/}">
                                                     <core:ListItem id="ListItemChart3Obj" key="{objtype>ObjTypeid}" text="{objtype>ObjTypes}" />
@@ -388,9 +403,9 @@
                         </f:content>
                     </f:Card>
                 </VBox>
-
             </HBox>
-
+        </Panel>
+         <!-- </uxap:ObjectPageLayout> -->
         </Page>
     </App>
 </mvc:View>
