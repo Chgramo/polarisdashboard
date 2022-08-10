@@ -56,7 +56,7 @@ sap.ui.define(
             switch(sIconTabRes) 
             {
                 case "My Recent Records":
-                    utility.resetModel(this);
+                    // utility.resetModel(this);
                     aSorter.push(new Sorter("ChangedOn",true,false));
                     this.onSearch();
                     var oListItems = this.getView().byId('card1List').getBinding("items");
@@ -65,7 +65,7 @@ sap.ui.define(
                     // onSearch();
                   break;
                 case "My Recent favorites":
-                    utility.resetModel(this);
+                    // utility.resetModel(this);
                     this.onSearch();
                     var oListItems = this.getView().byId('card1List').getBinding("items");
                     //  utility.setLength(this);
@@ -116,15 +116,14 @@ sap.ui.define(
             this.getView().byId('Intprp').mProperties.selectedKeys
             ],
             // aFilters=["Object Type","Record Type","Interacting Organization","Interaction Purpose"] ,//oEvent.mParameters.selectionSet.map(d=>d.mProperties.selectedKeys),
-            aFilter=[];
+            aFilter=[],
+            oListItems = this.getView().byId('card1List').getBinding("items");
             for (var i=0; i<arr.length; i++)
                 {
                     if (arr[i].length!=0){
                         var sfilterObj=`${i}`;
                         // aFilter.push(new Filter(sfilterObj,FilterOperator.EQ,true));
                     for(let j=0; j<arr[i].length; j++){
-                        var oListItems = this.getView().byId('card1List').getBinding("items");
-                    
                         switch(sfilterObj){
                             case '0':
                                   aFilter.push(new Filter("ObjectType",FilterOperator.EQ,arr[i][j]));
@@ -159,13 +158,17 @@ sap.ui.define(
                 oListItems.filter(aFilter);
             }
             // utility.setLength(this);
+            
         },
 
         onInboxSearch:function(oEvent){
             debugger;
+            
             var arr=[]= oEvent.mParameters.selectionSet.map(d=>d.mProperties.selectedKeys);
             var aFilter=[];
             var oListItems = this.getView().byId('card2List').getBinding("items");
+            var aSort=[];
+            
             for (var i=0; i<arr.length; i++)
                 {
                     if (arr[i].length!=0){
@@ -198,13 +201,53 @@ sap.ui.define(
                 }
                 
         }
+        aSort.push(new Sorter("Due",true,false));
         oListItems.filter(aFilter);
-        utility.setLength1(this);
-        utility.resetModel1(this);
+        oListItems.sort(aSort);
+
+        // utility.setLength1(this);
+        // utility.resetModel1(this);
         
     },
     onchartSearch:function(oEvent){
+        debugger;
+        var arr=[]= oEvent.mParameters.selectionSet.map(d=>d.mProperties.selectedKeys);
+        var aFilter=[];
+        var oListItems = this.getView().byId("idflattenData").getBindingInfo('data').binding;
+        for (var i=0; i<arr.length; i++)
+                {
+                    if (arr[i].length!=0){
+                        var sfilterObj=oEvent.getParameter("selectionSet")[i].getBindingInfo("items").model;
+                        // aFilter.push(new Filter(sfilterObj,FilterOperator.EQ,true));
+                    for(let j=0; j<arr[i].length; j++){
+                       
+                        switch(sfilterObj){
+                            case 'objtype':
+                                  aFilter.push(new Filter("ObjectType",FilterOperator.EQ,arr[i][j]));
+                                //   oListItems.filter(aFilter);
+                                break;
+                            case 'rectyp' :
+                                aFilter.push(new Filter("RecordType",FilterOperator.EQ,arr[i][j]));
+                                //   oListItems.filter(aFilter);
+                                break; 
+                            case 'intorg' :
+                                aFilter.push(new Filter("InteractingOrgId",FilterOperator.EQ,arr[i][j]));
+                                //   oListItems.filter(aFilter);
+                                break; 
+                            case 'intprp' :
+                            aFilter.push(new Filter("InteractionPurposeId",FilterOperator.EQ,arr[i][j]));
+                            // oListItems.filter(aFilter);
+                                break; 
+                            default:
+                                break;
 
+                        }
+                    }
+                }
+                
+        }
+        oListItems.filter(aFilter);
+        
     }
     
       });

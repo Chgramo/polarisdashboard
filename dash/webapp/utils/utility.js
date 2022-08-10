@@ -24,11 +24,18 @@ sap.ui.define([
          },
          objectHeaderData:function(oProductInfoController)
          {
+             debugger;
             var url = `/ObjectHeader`,
             aFilter=[];
             aFilter.push(new Filter("CreatedBy",FilterOperator.EQ,"CB9980000221"));
             oProductInfoController._oDynamicModel.read(url, {                                 
-            filters: aFilter,            
+            filters: aFilter,
+            
+            urlParameters: {
+            "$expand": `to_RecordType/to_StatusSchema/to_StatusSchemaTrans`
+            },
+
+            
             success: function (oResult) {
                 debugger;
                 var aResults = oResult.results;
@@ -37,10 +44,10 @@ sap.ui.define([
                 oInitialModel.setData(aResults);
                 oProductInfoController.getView().setModel(oInitialModel,"Card1RecModel");
                 var cardLen=oProductInfoController.getView().byId('card1List').getBinding("items").aIndices.length;
-                if(cardLen>=5)
-                {
-                    this.setLength(oProductInfoController); 
-                }
+                // if(cardLen>=5)
+                // {
+                //     this.setLength(oProductInfoController); 
+                // }
                 this.getLifecycleStatus(oProductInfoController);
                 this.returnRecordType(oProductInfoController);
             }.bind(this),
@@ -193,8 +200,15 @@ sap.ui.define([
                for( var i=0;i<astatusID.length;i++)
                {
                  var oStatusModel={};
-                 oStatusModel.status= astatusID[i];
+                 if(astatusCount[i]==0)
+                 {
+                    oStatusModel.status="";
+                 }
+                 else{
+                    oStatusModel.status= astatusID[i];
+                 }
                  oStatusModel.statusCount=astatusCount[i];
+                 
                  aStatusModel.push(oStatusModel);
                }
               var statusChart=new JSONModel();
@@ -242,85 +256,86 @@ sap.ui.define([
                 return "No Date Found";
             }
         },
-        setLength:function(oProductInfoController,b=5)
-         {
-            this.resetModel(oProductInfoController);
-            var aLength=oProductInfoController.getView().byId('card1List').getBinding("items"),
-            aDisplay=[];
-            if(aLength.oList.length>5 && aLength.aIndices.length>5)
-            {
-                for(var i=0;i<aLength.aIndices.length;i++)
-                {
-                     aDisplay.push(aLength.oList[aLength.aIndices[i]]);
-                } 
+        // setLength:function(oProductInfoController,b=5)
+        //  {
+        //     this.resetModel(oProductInfoController);
+        //     var aLength=oProductInfoController.getView().byId('card1List').getBinding("items"),
+        //     aDisplay=[];
+        //     if(aLength.oList.length>5 && aLength.aIndices.length>5)
+        //     {
+        //         for(var i=0;i<aLength.aIndices.length;i++)
+        //         {
+        //              aDisplay.push(aLength.oList[aLength.aIndices[i]]);
+        //         } 
                 
-                var aTemparr=[],m=b;
-                for(var j=b-1;j>=m-5;j--)
-                {
-                     aTemparr.push(j)
-                }
+        //         var aTemparr=[],m=b;
+        //         for(var j=b-1;j>=m-5;j--)
+        //         {
+        //              aTemparr.push(j)
+        //         }
          
-                for(var i=0;i<aDisplay.length;i++)
-                {
-                     if(!(aTemparr.includes(i)))
-                     {
-                        aDisplay[i].visible=false;
-                     }
-                }
-                oProductInfoController.getView().getModel("Card1RecModel").setProperty("/",aDisplay);
-            }
-         },
-         resetModel:function(oProductInfoController)
-         {
-            var aLength=oProductInfoController.getView().byId('card1List').getBinding("items");
-            for(var i=0;i<aLength.oList.length;i++)
-            {
-                aLength.oList[i].visible=true;
-            } 
-            oProductInfoController.getView().getModel("Card1RecModel").setProperty("/",aLength.oList);
+        //         for(var i=0;i<aDisplay.length;i++)
+        //         {
+        //              if(!(aTemparr.includes(i)))
+        //              {
+        //                 aDisplay[i].visible=false;
+        //              }
+        //         }
+        //         oProductInfoController.getView().getModel("Card1RecModel").setProperty("/",aDisplay);
+        //     }
+        //  },
+        //  resetModel:function(oProductInfoController)
+        //  {
+        //     var aLength=oProductInfoController.getView().byId('card1List').getBinding("items");
+        //     for(var i=0;i<aLength.oList.length;i++)
+        //     {
+        //         aLength.oList[i].visible=true;
+        //     } 
+        //     oProductInfoController.getView().getModel("Card1RecModel").setProperty("/",aLength.oList);
              
-         },
-         setLength1:function(oProductInfoController,b=5)
-         {
-            this.resetModel1(oProductInfoController);
-            var aLength=oProductInfoController.getView().byId('card2List').getBinding("items"),
-            aDisplay=[];
-            if(aLength.oList.length>5)
-            {
-                for(var i=0;i<aLength.aIndices.length;i++)
-                {
-                     aDisplay.push(aLength.oList[aLength.aIndices[i]]);
-                } 
+        //  },
+        //  setLength1:function(oProductInfoController,b=5)
+        //  {
+        //     this.resetModel1(oProductInfoController);
+        //     var aLength=oProductInfoController.getView().byId('card2List').getBinding("items"),
+        //     aDisplay=[];
+        //     if(aLength.oList.length>5)
+        //     {
+        //         for(var i=0;i<aLength.aIndices.length;i++)
+        //         {
+        //              aDisplay.push(aLength.oList[aLength.aIndices[i]]);
+        //         } 
                 
-                var aTemparr=[],m=b;
-                for(var j=b-1;j>=m-5;j--)
-                {
-                     aTemparr.push(j)
-                }
+        //         var aTemparr=[],m=b;
+        //         for(var j=b-1;j>=m-5;j--)
+        //         {
+        //              aTemparr.push(j)
+        //         }
          
-                for(var i=0;i<aDisplay.length;i++)
-                {
-                     if(!(aTemparr.includes(i)))
-                     {
-                        aDisplay[i].visible=false;
-                     }
-                }
-                oProductInfoController.getView().getModel("Card2RecModel").setProperty("/",aDisplay);
-            }
-         },
+        //         for(var i=0;i<aDisplay.length;i++)
+        //         {
+        //              if(!(aTemparr.includes(i)))
+        //              {
+        //                 aDisplay[i].visible=false;
+        //              }
+        //         }
+        //         oProductInfoController.getView().getModel("Card2RecModel").setProperty("/",aDisplay);
+        //     }
+        //  },
          
-         resetModel1:function(oProductInfoController)
-         {
-            var aLength=oProductInfoController.getView().byId('card2List').getBinding("items");
-            for(var i=0;i<aLength.oList.length;i++)
-            {
-                aLength.oList[i].visible=true;
-            } 
-            oProductInfoController.getView().getModel("Card2RecModel").setProperty("/",aLength.oList);
+        //  resetModel1:function(oProductInfoController)
+        //  {
+        //     var aLength=oProductInfoController.getView().byId('card2List').getBinding("items");
+        //     for(var i=0;i<aLength.oList.length;i++)
+        //     {
+        //         aLength.oList[i].visible=true;
+        //     } 
+        //     oProductInfoController.getView().getModel("Card2RecModel").setProperty("/",aLength.oList);
              
-         },
+        //  },
          objectTypeFilterData:function(oProductInfoController)
          {
+             debugger;
             var url = `/ObjectHeader`
             oProductInfoController._oDynamicModel.read(url, {            
             success: function (oResult) {

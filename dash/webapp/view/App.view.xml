@@ -22,8 +22,7 @@
 		upperCaseAnchorBar="false"> -->
         <Panel id="_IDGenPanel1"
 		width="auto"
-		expandable="{device>/system/phone}"
-		expanded="{= !${device>/system/phone} }">
+		>
         <FlexBox id="_IDGenFlexBox1"
 				alignItems="Start"
 				justifyContent="End">
@@ -31,7 +30,7 @@
         </FlexBox>
             <HBox id="_IDGenHBox1" width="100%">
                 <VBox id="_IDGenHBox2" width="50%" height="100%" class="sapUiSmallMarginTopBottom sapUiSmallMarginEnd">
-                    <f:Card id="idFavorite" height="80%">
+                    <f:Card id="idFavorite" >
                         <f:header>
                             <card:Header id="_IDGenHeader2e" title="My Records" subtitle="" iconSrc="sap-icon://activities" />
                         </f:header>
@@ -86,18 +85,20 @@
                                         </IconTabFilter>
                                     </items>
                                 </IconTabHeader>
-                            <ScrollContainer id="_IDGenScrollContainer1" height="100%" width="100%" vertical="true" focusable="true">
-                                <List id="card1List" growing="true"  growingThreshold="5" mode="SingleSelectMaster" noDataText="No Record Found" items="{ path: 'Card1RecModel>/', filters: [{path: 'ObjectType', operator: 'EQ', value1: 'MP' },
-                                        {path: 'RecordType', operator: 'EQ', value1: 'COR'},{path: 'InteractingOrgId', operator: 'EQ', value1: 'IDMP_COR'},
-                                        {path: 'InteractionPurposeId', operator: 'EQ', value1: 'IDM'}]}">
-                                    <CustomListItem id="_IDGenCustomListItem2" visible="{Card1RecModel>visible}">
-                                        <VBox id="_IDGenHBox2w" alignItems="Stretch" alignContent="Center" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
-                                            <Text id="idObjectDesc" text="{Card1RecModel>ObjectDescr}" visible="true"/>
-                                            <Text id="idRecordTypeText" text="{Card1RecModel>RecordTypeText}" visible="true"/>
-                                        </VBox>
-                                    </CustomListItem>
-                                </List>
-                            </ScrollContainer> 
+                                <VBox id="_IDGenHBox5" height="26rem" width="100%">
+                                    <ScrollContainer id="_IDGenScrollContainer1" height="100%" width="100%" vertical="true" focusable="true">
+                                        <List id="card1List"  growing="true"  growingThreshold="5" mode="SingleSelectMaster" noDataText="No Record Found" items="{ path: 'Card1RecModel>/', filters: [{path: 'ObjectType', operator: 'EQ', value1: 'MP' },
+                                                {path: 'RecordType', operator: 'EQ', value1: 'COR'},{path: 'InteractingOrgId', operator: 'EQ', value1: 'IDMP_COR'},
+                                                {path: 'InteractionPurposeId', operator: 'EQ', value1: 'IDM'}]}">
+                                            <CustomListItem id="_IDGenCustomListItem2" visible="{Card1RecModel>visible}">
+                                                <VBox id="_IDGenHBox2w" alignItems="Stretch" alignContent="Center" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+                                                    <Text id="idObjectDesc" text="{Card1RecModel>ObjectDescr}" visible="true"/>
+                                                    <Text id="idRecordTypeText" text="{Card1RecModel>RecordTypeText}" visible="true"/>
+                                                </VBox>
+                                            </CustomListItem>
+                                        </List>
+                                    </ScrollContainer> 
+                            </VBox>
                             </VBox>
                            
                         </f:content>
@@ -145,28 +146,30 @@
                                         </fb:FilterGroupItem>
                                     </fb:filterGroupItems>
                                 </fb:FilterBar>
-                                <!-- <ScrollContainer id="idScrollContainer" height="100%" width="100%" vertical="true" focusable="true"> -->
-                                    <List id="card2List" showSeparators="None" noDataText="No Record Found" items="{path: 'Card2RecModel>/', filters: [{path: 'ObjectType', operator: 'EQ', value1: 'MP' },
-                                        {path: 'RecordType', operator: 'EQ', value1: 'COR'},{path: 'InteractingOrgId', operator: 'EQ', value1: 'IDMP_COR'},
-                                        {path: 'InteractionPurposeId', operator: 'EQ', value1: 'IDM'}]}">
-                                        <CustomListItem id="_IDGenCustomListItem1" highlight="{Card2RecModel>Highlight}">
-                                            <HBox id="_IDGenHBox14" alignItems="Center" class="sapUiSmallMarginBeginEnd">
-                                                <VBox id="_IDGenVBox2" >
-                                                    <Title id="card2TitleName" level="H3" class="id_bold" wrapping="true" text="{Card2RecModel>TaskTitle}" />
-                                                    <Text id="card2TextPriority" text="Priority :{Card2RecModel>Priority}" />
-                                                    <Text id="card2TextDue" text="Due :{Card2RecModel>Due}"/>
-                                                    <HBox id="_IDGenHBox111" >
-                                                        <Text id="_IDGenText8" text="Product ID :"/>
-                                                        <Text id="card2TextID" class="id_colorblue" text="{Card2RecModel>RecordId}"/>
-                                                    </HBox>
-                                                    <Text id="card2TextDescription" text=" Description :{Card2RecModel>ObjectDescr}"/>
-                                                    <Text id="card2TextLastSeen" class="" text="{Lastseen}"/>
-                                                </VBox>
-                                                <!-- <Button id="_IDGenButton1" alignContent="" text="View" type="Default" press="onPressView"></Button> -->
-                                            </HBox>
-                                        </CustomListItem>
-                                    </List>
-                                <!-- </ScrollContainer> -->
+                                <VBox id="_IDGenHBox6" height="26rem" width="100%">
+                                    <ScrollContainer id="idScrollContainer" height="100%" width="100%" vertical="true" focusable="true">
+                                        <List id="card2List" showSeparators="Inner" growing="true"  growingThreshold="5" mode="SingleSelectMaster" noDataText="No Record Found" items="{path: 'Card2RecModel>/', filters: [{path: 'ObjectType', operator: 'EQ', value1: 'MP' },
+                                            {path: 'RecordType', operator: 'EQ', value1: 'COR'},{path: 'InteractingOrgId', operator: 'EQ', value1: 'IDMP_COR'},
+                                            {path: 'InteractionPurposeId', operator: 'EQ', value1: 'IDM'}]}">
+                                            <CustomListItem id="_IDGenCustomListItem1" highlight="{Card2RecModel>Highlight}">
+                                                <HBox id="_IDGenHBox14" alignItems="Center" class="sapUiSmallMarginBegin sapUiTinyMarginTopBottom">
+                                                    <VBox id="_IDGenVBox2" >
+                                                        <Title id="card2TitleName" level="H3" class="id_bold" wrapping="true" text="{Card2RecModel>TaskTitle}" />
+                                                        <Text id="card2TextPriority" text="Priority :{Card2RecModel>Priority}    Due :{Card2RecModel>Due}" />
+                                                        <!-- <Text id="card2TextDue" text="Due :{Card2RecModel>Due}"/> -->
+                                                        <!-- <HBox id="_IDGenHBox111" > -->
+                                                            <!-- <Text id="_IDGenText8" text="Product ID :"/> -->
+                                                            <!-- <Text id="card2TextID" class="id_colorblue" text="{Card2RecModel>RecordId}"/> -->
+                                                        <!-- </HBox> -->
+                                                        <Text id="card2TextDescription" text=" Description :{Card2RecModel>ObjectDescr}"/>
+                                                        <Text id="card2TextLastSeen" class="" text="{Lastseen}"/>
+                                                    </VBox>
+                                                    <!-- <Button id="_IDGenButton1" alignContent="" text="View" type="Default" press="onPressView"></Button> -->
+                                                </HBox>
+                                            </CustomListItem>
+                                        </List>
+                                    </ScrollContainer>
+                                </VBox>
                             </VBox>
                         </f:content>
                     </f:Card>
@@ -215,15 +218,15 @@
                                         </fb:FilterGroupItem>
                                     </fb:filterGroupItems>
                                 </fb:FilterBar>
-                                <viz:VizFrame id="idpiechartStatus" uiConfig="{applicationSet:'fiori'}" vizType="donut" vizProperties="{
+                                <viz:VizFrame id="piechartStatus" uiConfig="{applicationSet:'fiori'}" vizType="donut" vizProperties="{
                                                                                                                         plotArea:{
-                                                                                                                                            dataLabel:{visible: true}
+                                                                                                                                            dataLabel:{visible: true,type : 'value'}
                                                                                                                                 },
                                                                                                                                             title : {text:'Status'}
                                                                                                                             }">
 
                                     <viz:dataset>
-                                        <viz.data:FlattenedDataset id="idflattenData" data="{StatusChart>/}">
+                                        <viz.data:FlattenedDataset id="idflattenData" data="{StatusChart>/}" >
                                             <viz.data:dimensions>
                                                 <viz.data:DimensionDefinition id="idStatus" name="status" value="{StatusChart>status}" />
                                             </viz.data:dimensions>
@@ -289,7 +292,7 @@
                                 </fb:FilterBar>
                                 <viz:VizFrame id="idpiechartPriority" uiConfig="{applicationSet:'fiori'}" vizType="donut" vizProperties="{
                                                                                                                         plotArea:{
-                                                                                                                                            dataLabel:{visible: true}
+                                                                                                                                            dataLabel:{visible: true, type : 'value'}
                                                                                                                                 },
                                                                                                                                             title : {text:'Priority'}
                                                                                                                             }">
