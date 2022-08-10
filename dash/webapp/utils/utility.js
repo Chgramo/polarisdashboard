@@ -24,7 +24,6 @@ sap.ui.define([
          },
          objectHeaderData:function(oProductInfoController)
          {
-             debugger;
             var url = `/ObjectHeader`,
             aFilter=[];
             aFilter.push(new Filter("CreatedBy",FilterOperator.EQ,"CB9980000221"));
@@ -34,15 +33,14 @@ sap.ui.define([
             urlParameters: {
             "$expand": `to_RecordType/to_StatusSchema/to_StatusSchemaTrans`
             },
-
-            
             success: function (oResult) {
-                debugger;
+            
                 var aResults = oResult.results;
                 aResults.map(m=>m.visible=true);
                 var oInitialModel=new sap.ui.model.json.JSONModel();  
                 oInitialModel.setData(aResults);
                 oProductInfoController.getView().setModel(oInitialModel,"Card1RecModel");
+                oProductInfoController.getView().setModel(oInitialModel,"StatusCardModel");
                 var cardLen=oProductInfoController.getView().byId('card1List').getBinding("items").aIndices.length;
                 // if(cardLen>=5)
                 // {
@@ -97,7 +95,6 @@ sap.ui.define([
                     async: false,
                     success: function (data) 
                     {
-                        debugger;
                          var aResults=data.d.results,Inboxdata=[];
                          for(var i=0;i<aResults.length;i++)
                          {
@@ -137,15 +134,10 @@ sap.ui.define([
                         //      }
                         //  }
                          that.setChartModel(Inboxdata,oProductInfoController);
-                         that.setstatusChartModel(Inboxdata,oProductInfoController,lifeCycle);
+                         that.setstatusChartModel(oProductInfoController,lifeCycle);
                          var oModel=new sap.ui.model.json.JSONModel();
                          oModel.setData(Inboxdata);
                          oProductInfoController.getView().setModel(oModel,"Card2RecModel");
-                         var cardLen=oProductInfoController.getView().byId('card2List').getBinding("items").aIndices.length;
-                            if(cardLen>5)
-                            {
-                                this.setLength1(oProductInfoController); 
-                            }
                     }
                 });
                
@@ -178,42 +170,79 @@ sap.ui.define([
          },
 
         
-         setstatusChartModel:function(results,oProductInfoController,alifeCycle)
+         setstatusChartModel:function(oProductInfoController,alifeCycle)
          {
-                var aStatusModel=[];
-                var astatusID=[],astatusCount=[];
-                for(let i =0;i<alifeCycle.length;i++)
+                debugger;
+                var aStatusRes=oProductInfoController.getView().getModel("StatusCardModel").getData(),aStatusModel=[],oStatusModel,aStatusList=[],aStatusCount=[];
+                for(var i=0;i<aStatusRes.length;i++)
                 {
-                      astatusID.push(alifeCycle[i].StatusText); 
-                      astatusCount.push(0);    
+                    oStatusModel={};
+                    oStatusModel.StatusText=aStatusRes[i].StatusText;
+                    if(aStatusList.filter(d=>d==aStatusRes[i].StatusText).length==0)
+                    {
+                        aStatusList.push(aStatusRes[i].StatusText);
+                    }
+                    aStatusModel.push(oStatusModel);
                 }
-                for( var i=0;i<results.length;i++)
-                 {
-                     for( var j=0;j<astatusID.length;j++)
+                for(var i=0;i<aStatusList.length;i++)
+                {
+                    aStatusCount[i]=0;
+                }
+                for(var j=0;j<aStatusModel.length;j++)
+                {
+                     for(var k=0;k<aStatusList.length;k++)
                      {
-                         if(results[i].StatusId==alifeCycle[j].StatusId)
+                         if(aStatusModel[j].StatusText==aStatusList[k])
                          {
-                             astatusCount[j]++;
+                            aStatusCount[k]+=1;
                          }
                      }
-                 }
-               for( var i=0;i<astatusID.length;i++)
-               {
-                 var oStatusModel={};
-                 if(astatusCount[i]==0)
-                 {
-                    oStatusModel.status="";
-                 }
-                 else{
-                    oStatusModel.status= astatusID[i];
-                 }
-                 oStatusModel.statusCount=astatusCount[i];
-                 
-                 aStatusModel.push(oStatusModel);
-               }
-              var statusChart=new JSONModel();
-              statusChart.setData(aStatusModel);
+                } 
+                var finalStatusModel=[];
+                for(var i=0;i<aStatusList.length;i++)
+                {
+                    var oStateModel={}
+                    oStateModel.status= aStatusList[i];
+                    oStateModel.statusCount=aStatusCount[i];
+                    finalStatusModel.push(oStateModel);
+                }
+               var statusChart=new JSONModel();
+              statusChart.setData(finalStatusModel);
               oProductInfoController.getView().setModel(statusChart,"StatusChart");
+
+
+            //     var aStatusModel=[];
+            //     var astatusID=[],astatusCount=[];
+            //     for(let i =0;i<alifeCycle.length;i++)
+            //     {
+            //           astatusID.push(alifeCycle[i].StatusText); 
+            //           astatusCount.push(0);    
+            //     }
+            //     for( var i=0;i<results.length;i++)
+            //      {
+            //          for( var j=0;j<astatusID.length;j++)
+            //          {
+            //              if(results[i].StatusId==alifeCycle[j].StatusId)
+            //              {
+            //                  astatusCount[j]++;
+            //              }
+            //          }
+            //      }
+            //    for( var i=0;i<astatusID.length;i++)
+            //    {
+            //      var oStatusModel={};
+            //      if(astatusCount[i]==0)
+            //      {
+            //         oStatusModel.status="";
+            //      }
+            //      else{
+            //         oStatusModel.status= astatusID[i];
+            //      }
+            //      oStatusModel.statusCount=astatusCount[i];
+                 
+            //      aStatusModel.push(oStatusModel);
+            //    }
+           
             
          },
          getRecordType:function(results)
@@ -335,7 +364,6 @@ sap.ui.define([
         //  },
          objectTypeFilterData:function(oProductInfoController)
          {
-             debugger;
             var url = `/ObjectHeader`
             oProductInfoController._oDynamicModel.read(url, {            
             success: function (oResult) {

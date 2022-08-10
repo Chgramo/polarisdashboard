@@ -157,7 +157,6 @@ sap.ui.define(
             {
                 oListItems.filter(aFilter);
             }
-            // utility.setLength(this);
             
         },
 
@@ -240,7 +239,6 @@ sap.ui.define(
                                 break; 
                             default:
                                 break;
-
                         }
                     }
                 }
