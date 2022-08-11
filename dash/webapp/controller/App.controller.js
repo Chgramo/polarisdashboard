@@ -16,6 +16,7 @@ sap.ui.define(
             this.counter=4;
             utility.Init(this); 
             utility.objectHeaderData(this);
+            utility.objectHeaderDataStatus(this);
             utility.objectTypeFilterData(this);
             utility.recordTypeFilterData(this);
             utility.InteractingOrgFilterData(this);
@@ -23,30 +24,6 @@ sap.ui.define(
             
             
          },
-        //  onPress:function(oEvent){
-             
-        //     // var sObjectUuid = oEvent.getSource().getParent().getParent().getBindingContext('relModel').getProperty('RelObjectUuid');
-        //                         // navigate to product information application
-        //                         var oCrossAppNavigator = sap.ushell.Container.getService("CrossApplicationNavigation");
-        //                         var hash = (oCrossAppNavigator && oCrossAppNavigator.hrefForExternal({
-        //                         target: {
-        //                         semanticObject: "ManageProductInfo",
-        //                         action: "display"
-        //                         },
-        //                         // params: {
-        //                         // "RecordID": "00000800.COR.001"
-        //                         // }
-        //                         })) || "";
-        //                         /*oCrossAppNavigator.toExternal({
-        //                         target: {
-        //                         shellHash: hash
-        //                         }
-        //                         });*/
-        //                         // To open in new tab
-        //                         var url = window.location.href.split('#')[0] + hash;
-        //                         sap.m.URLHelper.redirect(url, true);
-             
-        //  },
           onSelectionChange:function()
           
           {
@@ -197,8 +174,7 @@ sap.ui.define(
 
                         }
                     }
-                }
-                
+                }    
         }
         aSort.push(new Sorter("Due",true,false));
         oListItems.filter(aFilter);
@@ -209,6 +185,8 @@ sap.ui.define(
         
     },
     onchartSearch:function(oEvent){
+        utility.objectHeaderDataStatus(this);
+        var data = this.getView().getModel("StatusCardModel").getData();
         debugger;
         var arr=[]= oEvent.mParameters.selectionSet.map(d=>d.mProperties.selectedKeys);
         var aFilter=[];
@@ -222,29 +200,27 @@ sap.ui.define(
                        
                         switch(sfilterObj){
                             case 'objtype':
-                                  aFilter.push(new Filter("ObjectType",FilterOperator.EQ,arr[i][j]));
+                                  data=data.filter(d=>d.ObjectType==arr[i][j])
                                 //   oListItems.filter(aFilter);
                                 break;
                             case 'rectyp' :
-                                aFilter.push(new Filter("RecordType",FilterOperator.EQ,arr[i][j]));
-                                //   oListItems.filter(aFilter);
+                                data=data.filter(d=>d.RecordType==arr[i][j])
                                 break; 
                             case 'intorg' :
-                                aFilter.push(new Filter("InteractingOrgId",FilterOperator.EQ,arr[i][j]));
-                                //   oListItems.filter(aFilter);
+                                data=data.filter(d=>d.InteractingOrgId==arr[i][j])
                                 break; 
                             case 'intprp' :
-                            aFilter.push(new Filter("InteractionPurposeId",FilterOperator.EQ,arr[i][j]));
-                            // oListItems.filter(aFilter);
+                                data=data.filter(d=>d.InteractionPurposeId==arr[i][j])
                                 break; 
                             default:
                                 break;
                         }
                     }
-                }
-                
+                }    
         }
-        oListItems.filter(aFilter);
+        this.getView().getModel("StatusCardModel").setData(data);
+        // this.getView().getModel("StatusCardModel").refresh();
+        utility.setstatusChartModel(this);
         
     }
     

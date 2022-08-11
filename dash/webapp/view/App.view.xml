@@ -20,14 +20,68 @@
 		showEditHeaderButton="true"
 		editHeaderButtonPress="handleEditBtnPress"
 		upperCaseAnchorBar="false"> -->
-        <Panel id="_IDGenPanel1"
-		width="auto"
-		>
+        <Panel id="_IDGenPanel1" width="auto">
+        
         <FlexBox id="_IDGenFlexBox1"
 				alignItems="Start"
-				justifyContent="End">
+				justifyContent="End"
+                >
         <Button id="_IDGenButton1" text="Visable" type="Emphasized" class="sapUiSmallMarginEnd" />
         </FlexBox>
+        
+                    <FlexBox id="_IDGenFlexBox12" alignItems="Start" justifyContent="Center">
+                    <HBox id="QuickCard">
+                    <VBox id="_IDGenVBox7" class="sapUiSmallMarginBegin" >
+                                        <f:Card id="_IDGenCard7" width="100%">
+                                        <f:header>
+                                    <card:Header id="_IDGenHeader3" 
+                                        title="EVENT VIEW"
+                                        iconSrc="sap-icon://customer-order-entry" />
+                                    </f:header>
+                                        </f:Card>
+                    </VBox>      
+                        <VBox id="_IDGenVBox8" class="sapUiSmallMarginBegin">
+                                        <f:Card id="_IDGenCard8" width="100%">
+                                        <f:header>
+                                    <card:Header id="_IDGenHeader4" 
+                                        title="RELATION LIST"
+                                        iconSrc="sap-icon://tree" />
+                                    </f:header>
+                                        </f:Card>
+                        </VBox >
+
+                        <VBox id="_IDGenVBox9" class="sapUiSmallMarginBegin">
+                                        <f:Card id="_IDGenCard9" width="100%">
+                                        <f:header>
+                                    <card:Header id="_IDGenHeader5" 
+                                        title="MARKETING AUTHORISATION MAP VIEW"
+                                        iconSrc="sap-icon://globe" />
+                                    </f:header>
+                                        </f:Card>
+                        </VBox>
+
+                        <VBox id="_IDGenVBox10" class="sapUiSmallMarginBegin">
+                                    <f:Card id="_IDGenCard10" width="100%" >
+                                    <f:header>
+                                <card:Header id="_IDGenHeader6" 
+                                    title="RESPONSIBILITY ASSIGNMENT"
+                                    iconSrc="sap-icon://leads" />
+                                </f:header>
+                                    </f:Card>
+                        </VBox>            
+
+                        <VBox id="_IDGenVBox11" class="sapUiSmallMarginBegin">
+                                    <f:Card id="_IDGenCard11" width="100%" >
+                                    <f:header>
+                                <card:Header id="_IDGenHeader7" 
+                                    title="PRODUCT FAMILY"
+                                    iconSrc="sap-icon://group-2" />
+                                </f:header>
+                                    </f:Card>
+                        </VBox>
+                    </HBox>
+                    </FlexBox>
+        
             <HBox id="_IDGenHBox1" width="100%">
                 <VBox id="_IDGenHBox2" width="50%" height="100%" class="sapUiSmallMarginTopBottom sapUiSmallMarginEnd">
                     <f:Card id="idFavorite" >
@@ -35,7 +89,6 @@
                             <card:Header id="_IDGenHeader2e" title="My Records" subtitle="" iconSrc="sap-icon://activities" />
                         </f:header>
                         <f:content>
-                          
                             <VBox id="card1VerticalLayout" class="box" alignContent="Stretch" width="100%" fitContainer="true">
                                 <!-- Object type -->
                                
@@ -99,7 +152,7 @@
                                         </List>
                                     </ScrollContainer> 
                             </VBox>
-                            </VBox>
+                        </VBox>
                            
                         </f:content>
                     </f:Card>
@@ -359,25 +412,6 @@
                                         </fb:FilterGroupItem>
                                     </fb:filterGroupItems>
                                 </fb:FilterBar>
-                                <!-- <viz:VizFrame id="idpiecharwtPriority" uiConfig="{applicationSet:'fiori'}" vizType='bar'   vizProperties="{ }">
-                                    <viz:dataset>
-                                        <viz.data:FlattenedDataset id="flawttenData" data="{PriorityChart>/}">
-                                            <viz.data:dimensions>
-                                                <viz.data:DimensionDefinition id="_IDGwenDimensionDefinition1" name="priority" value="{}" />
-                                            </viz.data:dimensions>
-                                            <viz.data:measures>
-                                                <viz.data:MeasureDefinition id="_IDwGenMeasureDefinition1" name="priorityCount" value="{}" />
-                                            </viz.data:measures>
-                                        </viz.data:FlattenedDataset>
-                                    </viz:dataset>
-
-                                    <viz:feeds>
-                                        <viz.feeds:FeedItem id="_IDGenFeedItem12" uid="size" type="Measure" values="priorityCount" />
-                                        <viz.feeds:FeedItem id="_IDGenFeedItem22" uid="color" type="Dimension" values="priority" />
-                                    </viz:feeds>
-                                </viz:VizFrame> -->
-                                 
-                                        
                                         <viz:VizFrame id="idVizFrame" uiConfig="{applicationSet:'fiori'}" vizType='bar'>
                                             <viz:dataset>
                                                 <viz.data:FlattenedDataset id="_IDGenFlattenedDataset1" data="{/data}">
@@ -401,13 +435,12 @@
                                                     values="Store Name" />
                                             </viz:feeds>
                                         </viz:VizFrame>
-                                
-                            </VBox>
-                        </f:content>
-                    </f:Card>
-                </VBox>
-            </HBox>
-        </Panel>
+                                </VBox>
+                            </f:content>
+                        </f:Card>
+                    </VBox>
+                </HBox>
+            </Panel>
          <!-- </uxap:ObjectPageLayout> -->
         </Page>
     </App>
