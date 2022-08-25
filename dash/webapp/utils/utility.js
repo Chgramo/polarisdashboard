@@ -21,32 +21,39 @@ sap.ui.define([
            oProductInfoController.oTempModel=[];
            oProductInfoController.oModelIndices=[];
          },
-         objectHeaderData:function(oProductInfoController)
-         {
-            var url = `/ObjectHeader`,
-            aFilter=[];
-            aFilter.push(new Filter("CreatedBy",FilterOperator.EQ,"CB9980000221"));
-            oProductInfoController._oDynamicModel.read(url, {                                 
-            filters: aFilter,
-            
-            urlParameters: {
-            "$expand": `to_RecordType/to_StatusSchema/to_StatusSchemaTrans`
-            },
-            success: function (oResult) {
-            
-                var aResults = oResult.results;
-                aResults.map(m=>m.visible=true);
-                var oInitialModel=new sap.ui.model.json.JSONModel();  
-                oInitialModel.setData(aResults);
-                oProductInfoController.getView().setModel(oInitialModel,"Card1RecModel");
-               
-                this.getLifecycleStatus(oProductInfoController);
-                this.returnRecordType(oProductInfoController);
-            }.bind(this),
-            error: function (oError) {
-            }
-            });
-         },
+         
+        objectHeaderData:function(oProductInfoController)
+        {
+           var url = `/ObjectHeader`,
+           aFilter=[];
+           aFilter.push(new Filter("CreatedBy",FilterOperator.EQ,"CB9980000221"));
+        //    aFilter.push(new Filter("ObjectType", FilterOperator.EQ, "MAA"));
+           oProductInfoController._oDynamicModel.read(url, {                                 
+           filters: aFilter,
+           
+           urlParameters: {
+           "$expand": `to_RecordType/to_StatusSchema/to_StatusSchemaTrans`
+           },
+           success: function (oResult) {
+           
+               var aResults = oResult.results;
+               aResults.map(m=>m.visible=true);
+               var oInitialModel=new sap.ui.model.json.JSONModel();  
+               aResults.filter(d=>d.ChangedDate=sap.ui.core.format.DateFormat.getDateTimeInstance({
+
+                pattern: "yyyy-MM-dd"
+
+            }).format(new Date(d.ChangedDate)))
+               oInitialModel.setData(aResults);
+               oProductInfoController.getView().setModel(oInitialModel,"Card1RecModel");
+              
+               this.getLifecycleStatus(oProductInfoController);
+               this.returnRecordType(oProductInfoController);
+           }.bind(this),
+           error: function (oError) {
+           }
+           });
+        },
         objectHeaderDataStatus:function(oProductInfoController)
          {
             var url = `/ObjectHeader`,
@@ -73,6 +80,53 @@ sap.ui.define([
             error: function (oError) {
             }
             });
+         },
+         objectBarChart:function(oProductInfoController)
+         {
+             debugger;
+            var url = `/ObjectHeader`,
+            aFilter=[];
+            aFilter.push(new Filter("CreatedBy",FilterOperator.EQ,"CB9980000221"));
+            aFilter.push(new Filter("ObjectType", FilterOperator.EQ, "MAA"));
+            oProductInfoController._oDynamicModel.read(url, {                                 
+            filters: aFilter,
+                
+            urlParameters: {
+            
+                    "$expand": `to_ClassAttribVal/to_ClassAttribAttachVal`
+    
+                },
+                success: function (oResult) {
+                    debugger;
+                    var aResults = oResult.results;
+                    aResults.map(m=>m.visible=true);
+                    var oInitialModel=new sap.ui.model.json.JSONModel();  
+                    
+                    var aCountry=[];
+                    for(var i=0;i<oResult.results.length;i++)
+                        {
+                            debugger;
+                           
+                            if(oResult.results[i].to_ClassAttribVal.results.length>0)
+                            {
+                                if(oResult.results[i].to_ClassAttribVal.results.filter(d=>d.AttributeId=='IDMP55_MACOUNTRY').length!=0)
+                                {
+                                    aCountry.push(oResult.results[i].to_ClassAttribVal.results.filter(d=>d.AttributeId=='IDMP55_MACOUNTRY')[0])
+                                }
+                            }
+                            
+                        }
+                        oInitialModel.setData(aCountry);
+                    oProductInfoController.getView().setModel(oInitialModel,"BarChartCardRecModel");
+                   
+                    this.getLifecycleStatus(oProductInfoController);
+                    this.returnRecordType(oProductInfoController);
+                }.bind(this),
+                error: function (oError) {
+                    debugger;
+                    var a=0;
+                }
+                });
          },
          getLifecycleStatus:function(oProductInfoController)
          {
@@ -356,8 +410,8 @@ sap.ui.define([
                 oProductInfoController.byId("one").setModel(ObjtypeModel,"objtype");
                 oProductInfoController.byId("inboxid").setModel(ObjtypeModel,"objtype");
                 oProductInfoController.byId("Viz1").setModel(ObjtypeModel,"objtype");
-                oProductInfoController.byId("VizChartObj").setModel(ObjtypeModel,"objtype");
-                oProductInfoController.byId("VizChart3Obj").setModel(ObjtypeModel,"objtype");
+                // oProductInfoController.byId("VizChartObj").setModel(ObjtypeModel,"objtype");
+                // oProductInfoController.byId("VizChart3Obj").setModel(ObjtypeModel,"objtype");
             }.bind(this),
             error: function (oError) {
             }
@@ -390,8 +444,8 @@ sap.ui.define([
                 oProductInfoController.byId("Two").setModel(RecordtypeModel,"rectyp");
                 oProductInfoController.byId("inboxid2").setModel(RecordtypeModel,"rectyp");
                 oProductInfoController.byId("Viz2").setModel(RecordtypeModel,"rectyp");
-                oProductInfoController.byId("VizChartRec").setModel(RecordtypeModel,"rectyp");
-                oProductInfoController.byId("VizChart3Rec").setModel(RecordtypeModel,"rectyp");
+                // oProductInfoController.byId("VizChartRec").setModel(RecordtypeModel,"rectyp");
+                // oProductInfoController.byId("VizChart3Rec").setModel(RecordtypeModel,"rectyp");
                 
             }.bind(this),
             error: function (oError) {
@@ -420,13 +474,13 @@ sap.ui.define([
                 }
                 oProductInfoController._aObjectType.push(ObjlistType);
                 }
-                var RecordtypeModel=new sap.ui.model.json.JSONModel();  
-                RecordtypeModel.setData(oProductInfoController._aObjectType);
-                oProductInfoController.byId("Intorg").setModel(RecordtypeModel,"intorg");
-                oProductInfoController.byId("inboxid3").setModel(RecordtypeModel,"intorg");
-                oProductInfoController.byId("Viz3").setModel(RecordtypeModel,"intorg");
-                oProductInfoController.byId("VizChart3Ior").setModel(RecordtypeModel,"intorg");
-                oProductInfoController.byId("VizChartIor").setModel(RecordtypeModel,"intorg");
+                var IntorgModel=new sap.ui.model.json.JSONModel();  
+                IntorgModel.setData(oProductInfoController._aObjectType);
+                oProductInfoController.byId("Intorg").setModel(IntorgModel,"intorg");
+                oProductInfoController.byId("inboxid3").setModel(IntorgModel,"intorg");
+                oProductInfoController.byId("Viz3").setModel(IntorgModel,"intorg");
+                // oProductInfoController.byId("VizChart3Ior").setModel(IntorgModel,"intorg");
+                // oProductInfoController.byId("VizChartIor").setModel(IntorgModel,"intorg");
                 
                 
             }.bind(this),
@@ -456,13 +510,13 @@ sap.ui.define([
                 }
                 oProductInfoController._aObjectType.push(ObjlistType);
                 }
-                var RecordtypeModel=new sap.ui.model.json.JSONModel();  
-                RecordtypeModel.setData(oProductInfoController._aObjectType);
-                oProductInfoController.byId("Intprp").setModel(RecordtypeModel,"intprp");
-                oProductInfoController.byId("inboxid4").setModel(RecordtypeModel,"intprp");
-                oProductInfoController.byId("Viz4").setModel(RecordtypeModel,"intprp");
-                oProductInfoController.byId("VizChartIntprp").setModel(RecordtypeModel,"intprp");
-                oProductInfoController.byId("VizChart3Intprp").setModel(RecordtypeModel,"intprp");
+                var IntPur=new sap.ui.model.json.JSONModel();  
+                IntPur.setData(oProductInfoController._aObjectType);
+                oProductInfoController.byId("Intprp").setModel(IntPur,"intprp");
+                oProductInfoController.byId("inboxid4").setModel(IntPur,"intprp");
+                oProductInfoController.byId("Viz4").setModel(IntPur,"intprp");
+                // oProductInfoController.byId("VizChartIntprp").setModel(IntPur,"intprp");
+                // oProductInfoController.byId("VizChart3Intprp").setModel(IntPur,"intprp");
                 
                
                 

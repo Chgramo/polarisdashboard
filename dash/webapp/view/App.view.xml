@@ -28,62 +28,8 @@
                 >
         <Button id="_IDGenButton1" text="Visable" type="Emphasized" class="sapUiSmallMarginEnd" />
         </FlexBox>
-        
-                    <FlexBox id="_IDGenFlexBox12" alignItems="Start" justifyContent="Center">
-                    <HBox id="QuickCard">
-                    <VBox id="_IDGenVBox7" class="sapUiSmallMarginBegin" >
-                                        <f:Card id="_IDGenCard7" width="100%">
-                                        <f:header>
-                                    <card:Header id="_IDGenHeader3" 
-                                        title="EVENT VIEW"
-                                        iconSrc="sap-icon://customer-order-entry" />
-                                    </f:header>
-                                        </f:Card>
-                    </VBox>      
-                        <VBox id="_IDGenVBox8" class="sapUiSmallMarginBegin">
-                                        <f:Card id="_IDGenCard8" width="100%">
-                                        <f:header>
-                                    <card:Header id="_IDGenHeader4" 
-                                        title="RELATION LIST"
-                                        iconSrc="sap-icon://tree" />
-                                    </f:header>
-                                        </f:Card>
-                        </VBox >
-
-                        <VBox id="_IDGenVBox9" class="sapUiSmallMarginBegin">
-                                        <f:Card id="_IDGenCard9" width="100%">
-                                        <f:header>
-                                    <card:Header id="_IDGenHeader5" 
-                                        title="MARKETING AUTHORISATION MAP VIEW"
-                                        iconSrc="sap-icon://globe" />
-                                    </f:header>
-                                        </f:Card>
-                        </VBox>
-
-                        <VBox id="_IDGenVBox10" class="sapUiSmallMarginBegin">
-                                    <f:Card id="_IDGenCard10" width="100%" >
-                                    <f:header>
-                                <card:Header id="_IDGenHeader6" 
-                                    title="RESPONSIBILITY ASSIGNMENT"
-                                    iconSrc="sap-icon://leads" />
-                                </f:header>
-                                    </f:Card>
-                        </VBox>            
-
-                        <VBox id="_IDGenVBox11" class="sapUiSmallMarginBegin">
-                                    <f:Card id="_IDGenCard11" width="100%" >
-                                    <f:header>
-                                <card:Header id="_IDGenHeader7" 
-                                    title="PRODUCT FAMILY"
-                                    iconSrc="sap-icon://group-2" />
-                                </f:header>
-                                    </f:Card>
-                        </VBox>
-                    </HBox>
-                    </FlexBox>
-        
             <HBox id="_IDGenHBox1" width="100%">
-                <VBox id="_IDGenHBox2" width="50%" height="100%" class="sapUiSmallMarginTopBottom sapUiSmallMarginEnd">
+                <VBox id="_IDGenHBox2" width="34%"  class="sapUiSmallMarginTopBottom sapUiSmallMarginEnd">
                     <f:Card id="idFavorite" >
                         <f:header>
                             <card:Header id="_IDGenHeader2e" title="My Records" subtitle="" iconSrc="sap-icon://activities" />
@@ -138,7 +84,7 @@
                                         </IconTabFilter>
                                     </items>
                                 </IconTabHeader>
-                                <VBox id="_IDGenHBox5" height="26rem" width="100%">
+                                <VBox id="_IDGenHBox5" height="23.4rem" width="100%">
                                     <ScrollContainer id="_IDGenScrollContainer1" height="100%" width="100%" vertical="true" focusable="true">
                                         <List id="card1List"  growing="true"  growingThreshold="5" mode="SingleSelectMaster" noDataText="No Record Found" items="{ path: 'Card1RecModel>/', filters: [{path: 'ObjectType', operator: 'EQ', value1: 'MP' },
                                                 {path: 'RecordType', operator: 'EQ', value1: 'COR'},{path: 'InteractingOrgId', operator: 'EQ', value1: 'IDMP_COR'},
@@ -147,6 +93,7 @@
                                                 <VBox id="_IDGenHBox2w" alignItems="Stretch" alignContent="Center" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
                                                     <Text id="idObjectDesc" text="{Card1RecModel>ObjectDescr}" visible="true"/>
                                                     <Text id="idRecordTypeText" text="{Card1RecModel>RecordTypeText}" visible="true"/>
+                                                    <Text id="idChangedOn" text="{Card1RecModel>ChangedDate}" visible="true"/>
                                                 </VBox>
                                             </CustomListItem>
                                         </List>
@@ -157,8 +104,8 @@
                         </f:content>
                     </f:Card>
                 </VBox>
-                <VBox id="_IDGenHBox3" width="50%" height="100%" class="sapUiSmallMarginTopBottom sapUiSmallMarginEnd">
-                    <f:Card id="_IDGenCard6">
+                <VBox id="_IDGenHBox3" width="33%"  class="sapUiSmallMarginTopBottom sapUiSmallMarginEnd">
+                    <f:Card id="_IDGenCard6" height="100%">
                         <f:header>
                             <card:Header id="_IDGenHeader2" title="My Inbox" subtitle="" iconSrc="sap-icon://inbox" />
                         </f:header>
@@ -227,15 +174,72 @@
                         </f:content>
                     </f:Card>
                 </VBox>
+                <VBox id="_IDGenHBox3s" width="33%" class="sapUiSmallMarginTopBottom sapUiSmallMarginEnd">
+                    <f:Card id="_IDGenCarwd6">
+                        <f:header>
+                            <card:Header id="_IDGenHeadewr2" title="Quick Links" subtitle="" iconSrc="sap-icon://inbox" />
+                        </f:header>
+                        <f:content>
+                            <VBox id="card2VsBox5" class="box" alignContent="Stretch" width="100%" fitContainer="true">
+                                	<OverflowToolbar id="_IDGenOverflowToolbar1" design="Transparent" height="4.05rem">
+	                                </OverflowToolbar>
+                                <VBox id="_IDGenHtBox6" height="26rem" width="100%">
+                                        <List id="ProductList" >
+                                                <StandardListItem id="_IDGenStandardListItem1"
+                                                    title="Product Information Records"
+                                                    icon="sap-icon://accelerated"
+                                                    iconDensityAware="true"
+                                                    type="Active"
+                                                    href="https://www.sap.com/india/index.html"
+                                                    iconInset="false"
+                                                    press="handlePress"
+                                                    detailPress="handleDetailPress"
+                                                     />
+                                                    <StandardListItem id="_IDGenStadndardListItem1"
+                                                    title="My Inbox"
+                                                    icon="sap-icon://inbox"
+                                                    iconDensityAware="true"
+                                                    iconInset="false"
+                                                    press="handlePress"
+                                                    type="Active"
+                                                    detailPress="handleDetailPress" />
+                                                    <StandardListItem id="_IDGenStandardLisstItem1"
+                                                    title="Guidelines"
+                                                    icon="sap-icon://globe"
+                                                    iconDensityAware="true"
+                                                    type="Active"
+                                                    iconInset="false"
+                                                    press="handlePress"
+                                                    detailPress="handleDetailPress" />
+                                                    <StandardListItem id="_IDGenStandardLdistItem1"
+                                                    title=""
+                                                    icon=""
+                                                    iconDensityAware="true"
+                                                    iconInset="false"
+                                                    press="handlePress"
+                                                    detailPress="handleDetailPress" />
+                                                    <StandardListItem id="_IDGenStanadardListItem1"
+                                                    title=""
+                                                    icon=""
+                                                    iconDensityAware="true"
+                                                    iconInset="false"
+                                                    press="handlePress"
+                                                    detailPress="handleDetailPress" />
+                                            </List>
+                                </VBox>
+                            </VBox>
+                        </f:content>
+                    </f:Card>
+                </VBox>
             </HBox>
             <HBox id="_IDGenHBox4" width="100%">
-                <VBox id="_IDGenVBox1" class="sapUiSmallMarginBottom sapUiSmallMarginEnd">
+                <VBox id="_IDGenVBox1"  width="33%" class="sapUiSmallMarginBottom sapUiSmallMarginEnd">
                     <f:Card id="_IDGenCasrder4">
                         <f:header>
                             <card:Header id="_IDGensHeadere6" title="Open Items" subtitle="By Status 35" iconSrc="sap-icon://overflow" />
                         </f:header>
                         <f:content >
-                            <VBox id="_IDGenVBox4">
+                            <VBox id="_IDGenVBox4"  class="box" alignContent="Center" width="100%" fitContainer="true">
                                 <fb:FilterBar id="_IDGenFiltesrBar12" reset="onReset" search="onchartSearch" showRestoreButton="true" showClearButton="true" filterBarExpanded="false">
                                     <fb:filterGroupItems>
                                         <fb:FilterGroupItem id="_IDGenFilsterGroupItem12" groupName="__$INTERNAL$" name="A" label="Object Type" partOfCurrentVariant="true" visibleInFilterBar="true">
@@ -271,43 +275,45 @@
                                         </fb:FilterGroupItem>
                                     </fb:filterGroupItems>
                                 </fb:FilterBar>
-                                <viz:VizFrame id="piechartStatus" uiConfig="{applicationSet:'fiori'}" vizType="donut" vizProperties="{
-                                                                                                                        plotArea:{
-                                                                                                                                            dataLabel:{visible: true,type : 'value'}
-                                                                                                                                },
-                                                                                                                                            title : {text:'Status'}
-                                                                                                                            }">
+                                        <VBox id="_IDGenVBox7"  autoAdjustHeight="true" class="box" alignContent="Center" width="100%" fitContainer="true"  height="23rem">
+                                                <viz:VizFrame id="piechartStatus" height="23rem" width="28rem" uiConfig="{applicationSet:'fiori'}" alignContent="Center" vizType="donut" vizProperties="{
+                                                                                                                                    plotArea:{
+                                                                                                                                                        dataLabel:{visible: true,type : 'value'}
+                                                                                                                                            },
+                                                                                                                                                        title : {text:'Status'}
+                                                                                                                                        }">
 
-                                    <viz:dataset>
-                                        <viz.data:FlattenedDataset id="idflattenData" data="{StatusChart>/}" >
-                                            <viz.data:dimensions>
-                                                <viz.data:DimensionDefinition id="idStatus" name="status" value="{StatusChart>status}" />
-                                            </viz.data:dimensions>
-                                            <viz.data:measures>
-                                                <viz.data:MeasureDefinition id="idStatusVal" name="statusCount" value="{StatusChart>statusCount}" />
-                                            </viz.data:measures>
-                                        </viz.data:FlattenedDataset>
-                                    </viz:dataset>
+                                                <viz:dataset>
+                                                    <viz.data:FlattenedDataset id="idflattenData" data="{StatusChart>/}" >
+                                                        <viz.data:dimensions>
+                                                            <viz.data:DimensionDefinition id="idStatus" name="status" value="{StatusChart>status}" />
+                                                        </viz.data:dimensions>
+                                                        <viz.data:measures>
+                                                            <viz.data:MeasureDefinition id="idStatusVal" name="statusCount" value="{StatusChart>statusCount}" />
+                                                        </viz.data:measures>
+                                                    </viz.data:FlattenedDataset>
+                                                </viz:dataset>
 
-                                    <viz:feeds>
-                                        <viz.feeds:FeedItem id="idPriorityFlag" uid="size" type="Measure" values="statusCount" />
-                                        <viz.feeds:FeedItem id="idPriorityCountFlag" uid="color" type="Dimension" values="status" />
-                                    </viz:feeds>
-                                </viz:VizFrame>
-                            </VBox>
+                                                <viz:feeds>
+                                                    <viz.feeds:FeedItem id="idPriorityFlag" uid="size" type="Measure" values="statusCount" />
+                                                    <viz.feeds:FeedItem id="idPriorityCountFlag" uid="color" type="Dimension" values="status" />
+                                                </viz:feeds>
+                                            </viz:VizFrame>
+                                    </VBox>
+                                </VBox>
                         </f:content>
 
                     </f:Card>
                 </VBox>
 
-                <VBox id="_IDGenVBox22" class="sapUiSmallMarginBottom sapUiSmallMarginEnd">
+                <VBox id="_IDGenVBox22" width="33%" class="sapUiSmallMarginBottom sapUiSmallMarginEnd">
 
                     <f:Card id="_IDGenCarder4">
                         <f:header>
                             <card:Header id="_IDGenHeadere6" title="Open Items" subtitle="By Priority 35" iconSrc="sap-icon://overflow" />
                         </f:header>
                         <f:content >
-                            <VBox id="_IDGenVBox5">
+                            <VBox id="_IDGenVBox5" class="box" alignContent="Center" width="100%" fitContainer="true">
                                 <fb:FilterBar id="_IDGenFiltesrBar123" reset="onReset" search="onSearch" showRestoreButton="true" showClearButton="true" filterBarExpanded="false">
                                     <fb:filterGroupItems>
                                         <fb:FilterGroupItem id="_IDGenFilsterGroupItem123" groupName="__$INTERNAL$" name="A" label="Object Type" partOfCurrentVariant="true" visibleInFilterBar="true">
@@ -343,34 +349,36 @@
                                         </fb:FilterGroupItem>
                                     </fb:filterGroupItems>
                                 </fb:FilterBar>
-                                <viz:VizFrame id="idpiechartPriority" uiConfig="{applicationSet:'fiori'}" vizType="donut" vizProperties="{
+                                <VBox id="_IDGenVBox99"  autoAdjustHeight="true" class="box" alignContent="Center" width="100%" fitContainer="true"  height="23rem">
+                                <viz:VizFrame id="idpiechartPriority" height="23rem" width="28rem" alignContent="Center" uiConfig="{applicationSet:'fiori'}" vizType="donut" vizProperties="{
                                                                                                                         plotArea:{
                                                                                                                                             dataLabel:{visible: true, type : 'value'}
                                                                                                                                 },
                                                                                                                                             title : {text:'Priority'}
                                                                                                                             }">
                                     <viz:dataset>
-                                        <viz.data:FlattenedDataset id="flattenData" data="{PriorityChart>/}">
+                                        <viz.data:FlattenedDataset id="flattenData" data="{BarChartCardRecModel>/}">
                                             <viz.data:dimensions>
-                                                <viz.data:DimensionDefinition id="_IDGenDimensionDefinition1" name="priority" value="{PriorityChart>priority}" />
+                                                <viz.data:DimensionDefinition id="_IDGenDimensionDefinition1" name="priority" value="{BarChartCardRecModel>ValueCharText}" />
                                             </viz.data:dimensions>
                                             <viz.data:measures>
-                                                <viz.data:MeasureDefinition id="_IDGenMeasureDefinition1" name="priorityCount" value="{PriorityChart>priorityCount}" />
+                                                <viz.data:MeasureDefinition id="_IDGenMeasureDefinition1" name="priorityCount" value="{BarChartCardRecModel>ValueHigh}" />
                                             </viz.data:measures>
                                         </viz.data:FlattenedDataset>
                                     </viz:dataset>
 
                                     <viz:feeds>
-                                        <viz.feeds:FeedItem id="_IDGenFeedItem1" uid="size" type="Measure" values="priorityCount" />
-                                        <viz.feeds:FeedItem id="_IDGenFeedItem2" uid="color" type="Dimension" values="priority" />
+                                        <viz.feeds:FeedItem id="_IDGenFeedItem1" uid="size" type="Measure" values="priority" />
+                                        <viz.feeds:FeedItem id="_IDGenFeedItem2" uid="color" type="Dimension" values="priorityCount" />
                                     </viz:feeds>
                                 </viz:VizFrame>
+                                </VBox>
                             </VBox>
                         </f:content>
                     </f:Card>
                 </VBox>
                 
-                <VBox id="_IDGenVBox3" class="sapUiSmallMarginBottom sapUiSmallMarginEnd">
+                <!-- <VBox id="_IDGenVBox3" class="sapUiSmallMarginBottom sapUiSmallMarginEnd">
                     <f:Card id="_IDGenCarder4gf">
                         <f:header>
                             <card:Header id="_IDGenHewadere6" title="Registerd Product" subtitle="By Country" iconSrc="sap-icon://overflow" />
@@ -438,7 +446,7 @@
                                 </VBox>
                             </f:content>
                         </f:Card>
-                    </VBox>
+                    </VBox> -->
                 </HBox>
             </Panel>
          <!-- </uxap:ObjectPageLayout> -->

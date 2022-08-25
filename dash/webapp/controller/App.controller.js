@@ -16,6 +16,7 @@ sap.ui.define(
             this.counter=4;
             utility.Init(this); 
             utility.objectHeaderData(this);
+            utility.objectBarChart(this);
             utility.objectHeaderDataStatus(this);
             utility.objectTypeFilterData(this);
             utility.recordTypeFilterData(this);
