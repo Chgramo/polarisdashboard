@@ -310,7 +310,7 @@
 
                     <f:Card id="_IDGenCarder4">
                         <f:header>
-                            <card:Header id="_IDGenHeadere6" title="Open Items" subtitle="By Priority 35" iconSrc="sap-icon://overflow" />
+                            <card:Header id="_IDGenHeadere6" title="Registered Products" subtitle="By Country" iconSrc="sap-icon://overflow" />
                         </f:header>
                         <f:content >
                             <VBox id="_IDGenVBox5" class="box" alignContent="Center" width="100%" fitContainer="true">
@@ -350,26 +350,26 @@
                                     </fb:filterGroupItems>
                                 </fb:FilterBar>
                                 <VBox id="_IDGenVBox99"  autoAdjustHeight="true" class="box" alignContent="Center" width="100%" fitContainer="true"  height="23rem">
-                                <viz:VizFrame id="idpiechartPriority" height="23rem" width="28rem" alignContent="Center" uiConfig="{applicationSet:'fiori'}" vizType="donut" vizProperties="{
+                                <viz:VizFrame id="idpiechartPriority" height="23rem" width="28rem" alignContent="Center" uiConfig="{applicationSet:'fiori'}" vizType="bar" vizProperties="{
                                                                                                                         plotArea:{
                                                                                                                                             dataLabel:{visible: true, type : 'value'}
                                                                                                                                 },
-                                                                                                                                            title : {text:'Priority'}
+                                                                                                                                            title : {text:'Country'}
                                                                                                                             }">
                                     <viz:dataset>
                                         <viz.data:FlattenedDataset id="flattenData" data="{BarChartCardRecModel>/}">
                                             <viz.data:dimensions>
-                                                <viz.data:DimensionDefinition id="_IDGenDimensionDefinition1" name="priority" value="{BarChartCardRecModel>ValueCharText}" />
+                                                <viz.data:DimensionDefinition id="_IDGenDimensionDefinition1" name="Country" value="{BarChartCardRecModel>ValueCharText}" />
                                             </viz.data:dimensions>
                                             <viz.data:measures>
-                                                <viz.data:MeasureDefinition id="_IDGenMeasureDefinition1" name="priorityCount" value="{BarChartCardRecModel>ValueHigh}" />
+                                                <viz.data:MeasureDefinition id="_IDGenMeasureDefinition1" name="Status Count" value="{BarChartCardRecModel>Count}" />
                                             </viz.data:measures>
                                         </viz.data:FlattenedDataset>
                                     </viz:dataset>
 
                                     <viz:feeds>
-                                        <viz.feeds:FeedItem id="_IDGenFeedItem1" uid="size" type="Measure" values="priority" />
-                                        <viz.feeds:FeedItem id="_IDGenFeedItem2" uid="color" type="Dimension" values="priorityCount" />
+                                        <viz.feeds:FeedItem id="_IDGenFeedItem1" uid="valueAxis" type="Measure" values="Status Count" />
+                                        <viz.feeds:FeedItem id="_IDGenFeedItem2" uid="categoryAxis" type="Dimension" values="Country" />
                                     </viz:feeds>
                                 </viz:VizFrame>
                                 </VBox>

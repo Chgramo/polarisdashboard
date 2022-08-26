@@ -111,6 +111,7 @@ sap.ui.define([
                             {
                                 if(oResult.results[i].to_ClassAttribVal.results.filter(d=>d.AttributeId=='IDMP55_MACOUNTRY').length!=0)
                                 {
+                                    oResult.results[i].to_ClassAttribVal.results.filter(d=>d.AttributeId=='IDMP55_MACOUNTRY')[0].Count=i;
                                     aCountry.push(oResult.results[i].to_ClassAttribVal.results.filter(d=>d.AttributeId=='IDMP55_MACOUNTRY')[0])
                                 }
                             }
