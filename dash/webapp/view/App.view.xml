@@ -350,7 +350,7 @@
                                     </fb:filterGroupItems>
                                 </fb:FilterBar>
                                 <VBox id="_IDGenVBox99"  autoAdjustHeight="true" class="box" alignContent="Center" width="100%" fitContainer="true"  height="23rem">
-                                <viz:VizFrame id="idpiechartPriority" height="23rem" width="28rem" alignContent="Center" uiConfig="{applicationSet:'fiori'}" vizType="bar" vizProperties="{
+                                <viz:VizFrame id="idpiechartPriority" height="23rem" width="28rem" alignContent="Center" uiConfig="{applicationSet:'fiori'}" vizType="vertical_bullet" vizProperties="{
                                                                                                                         plotArea:{
                                                                                                                                             dataLabel:{visible: true, type : 'value'}
                                                                                                                                 },
